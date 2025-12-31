@@ -35,7 +35,7 @@ extensions = [
     "sphinxcontrib.mermaid",
     "sphinxext.opengraph",
     "sphinx_pyscript",
-    "sphinx_tippy",
+    # "sphinx_tippy",
     "sphinx_togglebutton",
 ]
 
