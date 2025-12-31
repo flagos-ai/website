@@ -107,13 +107,13 @@ gettext_compact = False     # optional: avoid file concatenation in sub director
 # html_static_path = ['_static']
 
 html_theme = "sphinx_book_theme"
-html_logo = "_static/logo.svg"
-html_favicon = "_static/logo.svg"
+html_logo = "_static/logo.png"
+html_favicon = "_static/logo.png"
 html_title = ""
 html_theme_options = {
     "logo": {
-      "image_light": "_static/logo.svg",
-      "image_dark": "_static/logo.svg",
+      "image_light": "_static/logo.png",
+      "image_dark": "_static/logo.png",
    },
     "home_page_in_toc": True,
     "use_download_button": False,
