@@ -38,7 +38,7 @@ FlagScale 是一款全流程大模型工具集，可支持大模型的完整生�
 :::
 
 :::{grid-item-card} FlagCX
-:link: https://www.redhat.com/en/technologies/artificial-intelligence
+:link: 
 :link-type: url
 
 FlagCX 是一款可扩展、自适应的跨芯片统一通信库。能面向多芯片、多平台场景，提供高性能的点对点与集合通信能力。在复用各平台原生集合通信能力的基础上，引入自主的设备缓冲区 IPC 与 RDMA 等技术，实现跨芯片与单芯片场景下的高效集合通信，并提供通信的自适应调优能力。
@@ -47,7 +47,7 @@ FlagCX 是一款可扩展、自适应的跨芯片统一通信库。能面向多�
 :::
 
 :::{grid-item-card} KernelGen
-:link: https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization
+:link: 
 :link-type: url
 
 KernelGen 是一款算子自动生成工具。旨在通过自然语言提示构建算子定义，检索现有相似算子定义，自动完成算子准确率及性能测试，生成准确率及性能测试结果，并生成Triton算子。
