@@ -297,7 +297,7 @@ for project in all_projects:
     html_theme_options["secondary_sidebar_items"][f"{project}/index"] = []
 
 html_context = {
-    "default_mode": "light"
+    "default_mode": "dark"
 # #     "conf_py_path": f"/docs/{docset}/",
 #     # "display_github": True,
 #     "github_user": "armstrongttwalker-alt",
