@@ -1,0 +1,5 @@
+*
+!build
+!docker
+!nginx.conf
+!default.conf

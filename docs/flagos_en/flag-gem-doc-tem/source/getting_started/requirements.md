@@ -1,0 +1,73 @@
+# Requirements
+
+This section includes requirements of using FlagGems, including supported platforms, models, dependencies, tools and other FlagOS component. FlagGems can be successfully installed and run only when all requirements are met.
+
+## Supported hardware platforms
+
+The following table lists the supported hardware platforms:
+
+| Vendor       | State                  | float16 | float32 | bfloat16 |
+|--------------|------------------------|:-------:|:-------:|:--------:|
+| aipu         | ✅ （Partial support） |    ✅    |    ✅    |     ✅    |
+| ascend       | ✅ （Partial support） |    ✅    |    ✅    |     ✅    |
+| cambricon    | ✅                     |    ✅    |    ✅    |     ✅    |
+| hygon        | ✅                     |    ✅    |    ✅    |     ✅    |
+| iluvatar     | ✅                     |    ✅    |    ✅    |     ✅    |
+| kunlunxin    | ✅                     |    ✅    |    ✅    |     ✅    |
+| metax        | ✅                     |    ✅    |    ✅    |     ✅    |
+| mthreads     | ✅                     |    ✅    |    ✅    |     ✅    |
+| nvidia       | ✅                     |    ✅    |    ✅    |     ✅    |
+
+## Supported models
+
+The following table lists the supported models:
+
+| Organization                              | Model             |
+|------------------------------------------|-------------------|
+| Google                                   | BERT-base-uncased |
+| Meta AI                                  | Llama-2-7b        |
+| UW / NYU / Microsoft Research            | LLaVA-1.5-7b      |
+
+## Python, PyTorch and Triton compatible versions
+
+Before running FlagGems, you need to install stable and compatible versions of Python, PyTorch, and Triton.
+
+Running on non-NVIDIA hardware requires that the underlying dependencies—PyTorch and the Triton compiler—are available and properly configured for the target platform.
+
+There are two common ways to obtain compatible builds:
+
+- Request from Hardware Vendor. Hardware vendors typically maintain custom builds of PyTorch and Triton tailored to their chips. Contact the vendor to request the appropriate versions.
+
+- Explore the FlagTree Project. The [FlagTree project](https://github.com/flagos-ai/flagtree) offers a unified Triton compiler infrastructure that supports a range of AI chips, including NVIDIA and non-NVIDIA platforms. It consolidates vendor-specific patches and enhancements into a shared open-source backend, simplifying compiler maintenance and enabling multi-platform compatibility.
+
+```{note}
+FlagTree provides Triton only. A matching PyTorch build is still required separately. Some platforms may require additional setup or patching.
+```
+
+## Dependencies
+
+FlagGems has the following build and runtime dependencies.
+
+### Build dependency
+
+The following table lists the build dependencies:
+
+| Dependency               | Version        | Description                                                                                                                                                                                                                                                                           |
+|--------------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| setuptools               | ≥ 64.0         | `setuptools` is an essential Python tool library for project packaging. It helps define project details, manage dependencies, and build distributable packages, serving as the foundation for most Python project distribution workflows.                                               |
+| scikit-build-core for C++| ≥ 0.11         | `scikit-build-core` streamlines the packaging of Python projects with C++ components. It leverages CMake for building C++ code and integrates with Python's packaging tools (e.g., setuptools), making it easy to compile C++ extensions and distribute them as standard Python packages (.whl, .tar.gz). |
+| pybind11 for C++         | latest version | `pybind11` simplifies the integration of C++ and Python. As a header-only library, it allows C++ code (e.g., high-speed algorithms, classes) to be wrapped into Python modules, so Python users can call C++ functionality directly without complex low-level bindings.                     |
+| torch                    | ≥ 2.2.0        | `torch` (PyTorch) is a powerful Python ML framework for deep learning. It offers high-performance tensor computing (supporting CPU/GPU acceleration) and a user-friendly interface for building and training neural networks, with seamless integration into the Python data science ecosystem.          |
+| ninja                    | latest version | `ninja` is a lightweight, high-speed build executor that runs compilation/linking commands from scripts generated by CMake, optimizing parallel and incremental builds to cut down build time for large projects.                                                                            |
+| cmake                    | latest version | `cmake` is a cross-platform build configuration tool that defines build rules in `CMakeLists.txt` and generates platform-compatible build scripts for tools like Ninja, abstracting away system-specific compilation details.                                                              |
+
+### Runtime dependency
+
+The following table lists the runtime dependencies:
+
+| Dependency   | Version        | Description                                                                                                                                                                                                                     |
+|--------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| torch        | ≥ 2.2.0        | `torch` (PyTorch) is a powerful Python ML framework for deep learning. It offers high-performance tensor computing (supporting CPU/GPU acceleration) and a user-friendly interface for building and training neural networks, with seamless integration into the Python data science ecosystem. |
+| packaging    | latest version | Packaging involves bundling an application or library with its metadata, dependencies, and configuration files into a structured package (e.g., `.whl` for Python, `.deb` for Linux), enabling seamless distribution and installation.                                                           |
+| PyYAML       | latest version | Simplifies YAML handling in Python. It provides straightforward APIs to load YAML data into Python objects and dump Python data to YAML files, commonly used for managing project configurations (e.g., model hyperparameters, environment settings).                                           |
+| sqlalchemy   | latest version | SQLAlchemy simplifies Python database interactions. Its ORM lets developers map Python classes to database tables, streamlining data CRUD operations (create, read, update, delete) while supporting multiple database backends (e.g., PostgreSQL, MySQL, SQLite).                              |
