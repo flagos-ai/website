@@ -12,7 +12,7 @@ To build each project, the ``PROJECT`` environment variable is used.
    $ PROJECT=flagtree_en make html  # build the flagtree English project
    $ PROJECT=flagrelease_en make html  # build the flagrelease English project
    $ PROJECT=flagperf_en make html  # build the flagperf English project
-   $ PROJECT=flagos_zh make html  # build the flagos Chinese project
+   $ PROJECT=flagos_zh make html  # build the Chinese project
    $ PROJECT=flagcx_zh make html  # build the flagcx Chinese project
    $ PROJECT=flaggems_zh make html  # build the flaggems Chinese project
    $ PROJECT=flagtree_zh make html  # build the flagtree Chinese project
@@ -49,10 +49,17 @@ extensions = [
     "myst_parser",
     "sphinx_copybutton",
     "sphinx_design",
+    # Temporarily comment out potentially problematic extensions
+    # "sphinx_tabs.tabs",  # Module name might be different
+    # "sphinx_prompt",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
+    # Comment out uninstalled extensions
+    # "sphinxcontrib.httpdomain",
+    # "sphinxcontrib.video",
+    # "sphinxemoji.sphinxemoji",
     "sphinxext.opengraph",
 ]
 
@@ -71,13 +78,12 @@ try:
 except ImportError:
     print("INFO: sphinx_prompt not available")
 
-# Define all projects
+# Define all projects with their configurations
 multiproject_projects = {
-    # English projects
     "flagos_en": {
         "use_config_file": False,
         "config": {
-            "project": "FlagOS Documentation",
+            "project": "Documentation",
             "html_title": "FlagOS Documentation",
         },
     },
@@ -116,7 +122,6 @@ multiproject_projects = {
             "html_title": "FlagPerf Documentation",
         },
     },
-    # Chinese projects
     "flagos_zh": {
         "use_config_file": False,
         "config": {
@@ -161,10 +166,8 @@ multiproject_projects = {
     },
 }
 
-# Get current project
 docset = get_project(multiproject_projects)
 
-# OGP configuration
 ogp_site_name = "KernelGen Documentation"
 ogp_use_first_image = True
 ogp_image = "https://docs.readthedocs.io/en/latest/_static/img/logo-opengraph.png"
@@ -174,39 +177,32 @@ ogp_custom_meta_tags = (
 ogp_enable_meta_description = True
 ogp_description_length = 300
 
-# Path configuration
 templates_path = ["_templates"]
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
 
-# Basic information
 master_doc = "index"
 copyright = '2025, FlagOS Community'
 author = 'FlagOS Community'
 release = '1.0.0'
+# release = version
 
 # Exclude patterns - exclude all other project directories
 exclude_patterns = ["_build", "shared", "_includes"]
-
-# Get all project directories to exclude
 all_projects = list(multiproject_projects.keys())
 for project in all_projects:
     if project != docset:
-        # Exclude both the project directory and any subdirectories
-        exclude_patterns.append(f"{project}/*")
-        exclude_patterns.append(f"{project}/**/*")
+        exclude_patterns.append(project)
 
 default_role = "obj"
-
-# Intersphinx configuration
 intersphinx_cache_limit = 14
 intersphinx_timeout = 3
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3.10/", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
+
 intersphinx_disabled_reftypes = ["*"]
 
-# MyST extensions
 myst_enable_extensions = [
     "dollarmath",
     "amsmath",
@@ -217,14 +213,13 @@ myst_enable_extensions = [
     "colon_fence",
     "smartquotes",
     "replacements",
+    # "linkify",
     "strikethrough",
     "substitution",
     "tasklist",
     "attrs_inline",
     "attrs_block",
 ]
-
-# Output formats
 htmlhelp_basename = "KernelGendoc"
 latex_documents = [
     (
@@ -245,50 +240,71 @@ man_pages = [
     )
 ]
 
-# Language configuration
+# Set language based on project suffix
 language = "en" if docset.endswith("_en") else "zh_CN"
-locale_dirs = [f"{docset}/locale/"] if os.path.exists(f"{docset}/locale") else []
+
+locale_dirs = [
+    f"{docset}/locale/",
+]
 gettext_compact = False
 
-# HTML theme configuration
 html_short_title = ""
+
 html_theme = "pydata_sphinx_theme"
-html_static_path = ["_static", f"{docset}/_static"] if os.path.exists(f"{docset}/_static") else ["_static"]
+html_static_path = ["_static", f"{docset}/_static"]
 html_css_files = ["custom.css", "homepage.css"]
+# Do not add sphinx_prompt_css.css for now, it might not exist
 html_js_files = []
+
 html_logo = "img/logo.png"
 html_favicon = "img/logo.png"
+# html_theme_options = {
+#     "logo_only": True,
+# }
 
-# HTML theme options
+# Update sidebar configurations for all projects
+html_sidebars = {}
+for project in all_projects:
+    html_sidebars[f"{project}/index"] = []
+
 html_theme_options = {
+    # "logo_only": False,
     "logo": {
-        "text": multiproject_projects[docset]["config"]["project"],
+        "text": "Documentation",
+        # "image_light": "_static/logo-light.png",
+        # "image_dark": "_static/logo-dark.png",
     },
     "home_page_in_toc": True,
     "use_download_button": False,
     "repository_url": "https://github.com/flagos-ai/KernelGen",
+    # "use_edit_page_button": True,
+    # "github_url": "https://github.com/flagos-ai/KernelGen",
+    # "repository_branch": "master",
+    # "path_to_docs": "docs",
     "use_repository_button": True,
-    "secondary_sidebar_items": {
-        "**": ["page-toc", "sourcelink"],
-    },
+    # "announcement": "<b>v3.0.0</b> is now out! See the Changelog for details",
+    "secondary_sidebar_items": {},
     "footer_start": ["copyright"],
     "footer_end": [],
     "show_sphinx": False,
+    # Note we have omitted `theme-switcher` below
     "navbar_end": ["navbar-icon-links"]
 }
 
+# Update secondary sidebar items for all projects
+for project in all_projects:
+    html_theme_options["secondary_sidebar_items"][f"{project}/index"] = []
+
 html_context = {
-    "default_mode": "dark",
-    "current_project": docset,
-    "project_title": multiproject_projects[docset]["config"]["project"],
+    "default_mode": "dark"
+# #     "conf_py_path": f"/docs/{docset}/",
+#     # "display_github": True,
+#     "github_user": "armstrongttwalker-alt",
+#     "github_repo": "https://github.com/flagos-ai/KernelGen",
+# #     "github_version": "main",
+# #     "plausible_domain": f"{os.environ.get('READTHEDOCS_PROJECT')}.readthedocs.io",
 }
 
-# Sidebar configuration - customize per project if needed
-html_sidebars = {
-    "**": ["sidebar-nav-bs", "search-field"],
-}
-
-# RST epilog for common replacements
 rst_epilog = """
 .. |org_brand| replace:: KernelGen Community
 .. |com_brand| replace:: KernelGen for Business
@@ -298,7 +314,6 @@ rst_epilog = """
 
 autosectionlabel_prefix_document = True
 
-# Linkcheck configuration
 linkcheck_retries = 2
 linkcheck_timeout = 1
 linkcheck_workers = 10
@@ -308,15 +323,8 @@ linkcheck_ignore = [
     r"https://github\.com.+?#L\d+",
 ]
 
-# External links
 extlinks = {
     "issue": ("https://github.com/armstrongttwalker-alt/test-i18n-KernelGen/issues/%s", "#%s"),
 }
 
 suppress_warnings = ["epub.unknown_project_files"]
-
-# Print current configuration for debugging
-print(f"INFO: Building project: {docset}")
-print(f"INFO: Language: {language}")
-print(f"INFO: Project title: {multiproject_projects[docset]['config']['project']}")
-print(f"INFO: Exclude patterns: {exclude_patterns}")
