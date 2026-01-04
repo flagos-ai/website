@@ -6,7 +6,12 @@ To build each project, the ``PROJECT`` environment variable is used.
 .. code:: console
 
    $ make html  # build default project
-   $ PROJECT=flagos_en make html  # build the English project
+   $ PROJECT=flagos_en make html  # build the flagos English project
+   $ PROJECT=flagcx_en make html  # build the flagcx English project
+   $ PROJECT=flaggems_en make html  # build the flaggems English project
+   $ PROJECT=flagtree_en make html  # build the flagtree English project
+   $ PROJECT=flagrelease_en make html  # build the lagrelease English project
+   $ PROJECT=flagperf_en make html  # build the flagperf English project
    $ PROJECT=zh make html  # build the Chinese project
 
 For more information read https://sphinx-multiproject.readthedocs.io/.
