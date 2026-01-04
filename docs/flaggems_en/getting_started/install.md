@@ -6,24 +6,32 @@ For a fresh installation of FlagGems, follow the steps below.
 
 ## Install as Python package
 
-1. Clone FlagGems from GitHub and enter the FlagGems folder.
-
-   ```{code-block} bash
-   #    Clone the FlagGems project from the remote Git repository to local
-   git clone https://github.com/FlagOpen/FlagGems
-   #    Switch the current working directory to the cloned FlagGems project directory
-   cd FlagGems/
-   ```
-
-2. Install build dependencies.
+1. Install build dependencies.
 
    ```{code-block} bash
    # InsInstall and upgrade Python build tools and C++ extension compilation dependencies
    pip install -U scikit-build-core>=0.11 pybind11 ninja cmake
    ```
 
+2. Install FlagTree (optional) and backend dependencies
+
+   ```{code-block} bash
+   #    Clone the FlagGems project from the remote Git repository to local
+   git clone https://github.com/FlagOpen/FlagGems
+   #    Switch the current working directory to the cloned FlagGems project directory
+   cd FlagGems/
+   # If you want to use the native Triton instead of FlagTree, please skip this step.
+   # Install backend specific dependencies through the .txt file. For nvidia, use requirements_nvidia.txt.
+   pip install -r flag_tree_requirements/requirements_backendxxx.txt
+
+   ```
+
 3. Install as a pure Python package.
-   To install FlagGems as a pure Python package, use the commands below. Following PEP 517, pip uses an isolated environment to build packages. If you do not want build isolation, pass the `--no-build-isolation` flag.
+   To install FlagGems as a pure Python package, use the commands below.
+
+   ```{note}
+   Following PEP 517, pip uses an isolated environment to build packages. If you do not want build isolation, pass the `--no-build-isolation` flag.
+   ```
 
    You can install the current Python package to the site-package directory or in editable mode:
 
@@ -41,7 +49,7 @@ For a fresh installation of FlagGems, follow the steps below.
       pip install -e .
       ```
 
-4. Optional. Install with the C extension.
+You can optionally install FlagGems with its C extension.
 
 ## Install with C extension
 

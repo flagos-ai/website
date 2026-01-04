@@ -1,50 +1,53 @@
 # Import and enable FlagGems
 
-You can enable FlagGems globally or enable it within a specific scope.
+FlagGems supports two common usage patterns: patching PyTorch ATen ops (recommended) and calling FlagGems ops explicitly.
 
-- Global enablement
-  To apply FlagGems optimizations across your entire script or interactive session:
+- Enable FlagGems and patch ATen ops
+   After `flag_gems.enable()`, supported `torch.* / torch.nn.functional.*` calls will be dispatched to FlagGems implementations automatically.
+  - Global enablement
+    To apply FlagGems optimizations across your entire script or interactive session:
 
-   ```{code-block} python
-   import flag_gems
+     ```{code-block} python
+      import torch
+      import flag_gems
 
-   # Enable flag_gems globally
+      flag_gems.enable()
 
-   flag_gems.enable()
-   ```
+      x = torch.randn(4096, 4096, device=flag_gems.device, dtype=torch.float16)
+      y = torch.mm(x, x)
+     ```
 
-  Once enabled, all supported operators in your code will automatically be replaced with the optimized FlagGems implementations—no further changes needed.
+    Once enabled, all supported operators in your code will automatically be replaced with the optimized FlagGems implementations, no further changes needed.
 
-- Scoped enablement
-  To apply FlagGems optimizations across your entire script or interactive session:
+  - Scoped enablement
+    To apply FlagGems optimizations across your entire script or interactive session:
 
-   ```{code-block} python
-   import flag_gems
+     ```{code-block} python
+      import torch
+      import flag_gems
 
-   # Enable flag_gems within a specific scope
+      with flag_gems.use_gems():
+         x = torch.randn(4096, 4096, device=flag_gems.device, dtype=torch.float16)
+         y = torch.mm(x, x)
+     ```
 
-   with flag_gems.use_gems():
-      # Code inside this block will use FlagGems-accelerated operators
-      pass
-   ```
+    Enabling within a specific scope is helpful for the following cases:
 
-  Enabling within a specific scope is helpful for the following cases:
+    - Benchmark performance differences
+    - Compare correctness between implementations
+    - Apply acceleration selectively in complex workflows
 
-  - Benchmark performance differences
-  - Compare correctness between implementations
-  - Apply acceleration selectively in complex workflows
+The `flag_gems.enable(...)` function supports several optional parameters. For more information, see Advanced usage of FlagGems enablement function.
 
-   Scoped enablement example:
+- Explicitly call FlagGems ops
+   You can also bypass PyTorch dispatch and call operators from `flag_gems.ops` directly without using `enable()`:
 
    ```{code-block} python
    import torch
+   from flag_gems import ops
    import flag_gems
 
-   M, N, K = 1024, 1024, 1024
-   A = torch.randn((M, K), dtype=torch.float16, device=flag_gems.device)
-   B = torch.randn((K, N), dtype=torch.float16, device=flag_gems.device)
-   with flag_gems.use_gems():
-      C = torch.mm(A, B)
+   a = torch.randn(1024, 1024, device=flag_gems.device, dtype=torch.float16)
+   b = torch.randn(1024, 1024, device=flag_gems.device, dtype=torch.float16)
+   c = ops.mm(a, b)
    ```
-
-The `flag_gems.enable(...)` function supports several optional parameters. For more information, see Advanced usage of FlagGems enablement function.
