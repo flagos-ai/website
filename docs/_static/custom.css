@@ -1,0 +1,201 @@
+
+/* Customize theme font colors */
+html[data-theme=light] {
+  --pst-color-borders: rgb(206, 212, 218);
+  --pst-color-primary: var(--pst-color-text-base);
+  --pst-color-secondary: rgb(207, 70, 42);
+  --pst-color-link: var(--pst-color-secondary);
+  /* match color of "Tip" admonition to Bokeh color scheme */
+  --pst-color-success: rgb(165, 205, 57);
+  --pst-color-admonition-tip: var(--pst-color-success);
+  --pst-color-inline-code: var(--pst-color-text-base);
+}
+
+/* activate the search box on the start page if the search button on the top banner is clicked */
+.bd-search {}
+
+/* make sure the article container uses all available space */
+.bd-article-container {
+  max-width: 100% !important;
+}
+
+/* disable this container to avoid unnecessary overflow */
+#rtd-footer-container {
+  display: none;
+}
+
+/* Tweak appearance of args in reference guide */
+.class .sig, .function .sig, .sig .property {
+  font-weight: 400;
+}
+
+/* Tweak borders for images (e.g. screenshots) */
+img.image-border {
+  border: 1px solid rgba(var(--pst-color-borders),1);
+  margin-bottom: 1.15rem;
+  border-radius: .2rem;
+  box-shadow: 1px 1px 1px #d8d8d8;
+}
+
+/* Style card headers */
+.sd-card-header {
+  background-color: rgb(220, 220, 220) !important;
+  font-weight: 700;
+  font-size: 110%;
+}
+.sd-row{
+    --sd-gutter-y: 1.5em;
+}
+
+/* Tweak sphinx-design cards */
+.bokeh-examples div {
+  padding: 0px;
+  margin: 0px;
+}
+.bokeh-examples img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ligatures provide bad UX in some cases, just turn them off */
+* {
+  font-variant-ligatures: none;
+}
+
+/* make left sidebar title invisible */
+.bd-links__title {
+  display: none;
+}
+
+/* CSS for our custom footer */
+.bd-footer {
+  padding: 0 !important;
+}
+.bd-footer h6 {
+  color: #fff;
+  font-weight: bold;
+  margin: 8px 0px;
+}
+.bd-footer .links {
+  background-color: #542437;
+  font-size: 0.9rem;
+}
+.bd-footer .links a {padding: 3px 0px;}
+.bd-footer .links-item {
+  margin: 0px;
+  padding: 20px 15px;
+}
+.bd-footer .links h6 {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+.bd-footer .links ul.nav li a {
+  padding: 3px 0;
+  font-size: 13px;
+  color: #fff;
+}
+.bd-footer .copyright {
+  background-color: #242729;
+  font-size: 0.85rem;
+  padding: 10px !important;
+}
+.bd-footer .copyright p {color: #eee;}
+.bd-footer .btn-primary { filter: brightness(90%); background-color: #C02942; border-color: #C02942; }
+.bd-footer .btn-primary:hover { filter: brightness(100%); background-color: #C02942; border-color: #C02942; }
+
+/* CSS for our custom gallery */
+div.bk-gallery {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+div.bk-thumbnail {
+    background: transparent;
+    border-radius: 7px;
+    box-shadow: 0 0 3px #444;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+div.bk-thumbnail:hover {
+    box-shadow: 0 0 5px #444;
+}
+
+div.bk-thumbnail-description {
+    font-weight: lighter;
+    font-size: 12px;
+    text-align: justify;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+div.bk-thumbnail-description p {
+    font-size: 10px;
+    text-align: left;
+}
+
+div.bk-gallery-tabs > label {
+    font-size: 18px;
+}
+
+img.gallery {
+  width: 200px;
+  height:200px
+}
+
+/* Pandas dataframe css */
+/* Source: https://github.com/spatialaudio/nbsphinx/blob/fb3ba670fc1ba5f54d4c487573dbc1b4ecf7e9ff/src/nbsphinx.py#L587-L619 */
+
+.dataframe {
+  max-width: 100%;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+table.dataframe {
+  border: none !important;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: transparent;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+table.dataframe thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+table.dataframe tr,
+table.dataframe th,
+table.dataframe td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+table.dataframe th {
+  font-weight: bold;
+}
+table.dataframe tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+table.dataframe tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
