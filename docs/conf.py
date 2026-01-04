@@ -250,8 +250,12 @@ gettext_compact = False
 
 html_short_title = ""
 
-html_theme = "pydata_sphinx_theme"
-# html_theme = "sphinx_book_theme"
+# html_theme = "pydata_sphinx_theme"
+# # html_theme = "sphinx_book_theme"
+if docset in ["flagos_en", "flagos_zh"]:
+    html_theme = "pydata_sphinx_theme"
+else:
+    html_theme = "sphinx_book_theme"
 html_static_path = ["_static", f"{docset}/_static"]
 html_css_files = ["custom.css", "homepage.css"]
 # Do not add sphinx_prompt_css.css for now, it might not exist

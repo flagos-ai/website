@@ -6,7 +6,7 @@ FlagOS is a unified, open-source system software stack designed for a variety of
 
 The figure below shows the position of FlagOS in the AI ecosystem and its composition modules.
 
-![flagos-framework](images/flagos-framework_zh.jpg)
+![flagos-framework](images/flagos-framework_en.jpg)
 
 FlagOS comprises four core modules: the operator library FlagGems, the compiler FlagTree, the communication library FlagCX, and the parallel framework FlagScale; and three open-source tools: FlagPerf, FlagRelease, and Triton-Copilot.
 
