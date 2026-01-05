@@ -296,6 +296,9 @@ if html_theme == "pydata_sphinx_theme":
     for project in ["flagos_en", "flagos_zh"]:
         html_theme_options["secondary_sidebar_items"][f"{project}/index"] = []
 
+    html_context = {
+    "default_mode": "dark"
+
 else:
     # Sphinx Book Theme configuration for all other projects
     html_theme_options = {
