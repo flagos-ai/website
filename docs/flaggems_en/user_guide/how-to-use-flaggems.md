@@ -1,4 +1,4 @@
-# How To Use FlagGems
+# Use FlagGems
 
 This section includes configurations during and after importing FlagGems.
 

@@ -1,10 +1,10 @@
-# Pointwise Dynamic
+# Dynamic generation of pointwise operators
 
 ## Pointwise operations
 
 Pointwise operators are trivial to parallelize. Most parallel programming guides begin with pointwise addition between 2 contiguous vectors. For [vector_add in Triton](https://triton-lang.org/main/getting-started/tutorials/01-vector-add.html#sphx-glr-getting-started-tutorials-01-vector-add-py), it is simple to implement a task partitioning schema that each CTA reads a contiguous range from each input vector and writes to a contiguous range of the output vector.
 
-However, actual use caes for pointwise operators may be more complicated.
+However, actual use cases for pointwise operators may be more complicated.
 
 - The input tensors may be contiguous: they may be contiguous in memory but not in a row-major order; or they may not be dense; or they may have internal overlapping;
 

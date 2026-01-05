@@ -37,7 +37,7 @@ FlagGems supports two common usage patterns: patching PyTorch ATen ops (recommen
     - Compare correctness between implementations
     - Apply acceleration selectively in complex workflows
 
-The `flag_gems.enable(...)` function supports several optional parameters. For more information, see Advanced usage of FlagGems enablement function.
+The `flag_gems.enable(...)` function supports several optional parameters. For more information, see [Use optional parameters for FlagGems enablement function](/user_guide/how-to-use-flaggems.md#use-optional-parameters-for-flaggems-enablement-function).
 
 - Explicitly call FlagGems ops
    You can also bypass PyTorch dispatch and call operators from `flag_gems.ops` directly without using `enable()`:

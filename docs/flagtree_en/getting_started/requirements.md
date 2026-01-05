@@ -55,6 +55,6 @@ The following list includes the supported tools:
     | `nanobind`   | A lightweight C++ library that exposes C++ types and functions to Python. It is used to create Python bindings for C++ code with minimal overhead (similar to pybind11, but faster). | 
 
   - **Backend specific dependencies**  
-    For more information, see Install FlagTree for different backends.
+    For more information, see [](/getting_started/install.md#install-flagtree-for-different-backends).
 
 
