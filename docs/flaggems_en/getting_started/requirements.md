@@ -8,15 +8,15 @@ The following table lists the supported hardware platforms:
 
 | Vendor       | State                  | float16 | float32 | bfloat16 |
 |--------------|------------------------|:-------:|:-------:|:--------:|
-| aipu         | ✅ （Partial support） |    ✅    |    ✅    |     ✅    |
-| ascend       | ✅ （Partial support） |    ✅    |    ✅    |     ✅    |
-| cambricon    | ✅                     |    ✅    |    ✅    |     ✅    |
-| hygon        | ✅                     |    ✅    |    ✅    |     ✅    |
-| iluvatar     | ✅                     |    ✅    |    ✅    |     ✅    |
-| kunlunxin    | ✅                     |    ✅    |    ✅    |     ✅    |
-| metax        | ✅                     |    ✅    |    ✅    |     ✅    |
-| mthreads     | ✅                     |    ✅    |    ✅    |     ✅    |
-| nvidia       | ✅                     |    ✅    |    ✅    |     ✅    |
+| AIPU         | ✅ (Partial support)   |    ✅    |    ✅    |     ✅    |
+| Huawei Ascend| ✅ (Partial support)   |    ✅    |    ✅    |     ✅    |
+| Cambricon    | ✅                     |    ✅    |    ✅    |     ✅    |
+| Hygon        | ✅                     |    ✅    |    ✅    |     ✅    |
+| Iluvatar     | ✅                     |    ✅    |    ✅    |     ✅    |
+| Kunlunxin    | ✅                     |    ✅    |    ✅    |     ✅    |
+| MetaX        | ✅                     |    ✅    |    ✅    |     ✅    |
+| Mthreads     | ✅                     |    ✅    |    ✅    |     ✅    |
+| NVIDIA       | ✅                     |    ✅    |    ✅    |     ✅    |
 
 ## Python, PyTorch and Triton compatible versions
 

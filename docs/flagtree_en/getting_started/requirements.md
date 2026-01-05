@@ -5,18 +5,18 @@ This section includes requirements of using FlagTree, including supported platfo
 ## Supported hardware platforms
 
 The following list includes the supported hardware platforms:
-- aipu
-- cambricon
+- AIPU
+- Cambricon
 - enflame
-- huawei ascend
-- HYGON
-- ILUVATAR
+- Huawei Ascend
+- Hygon
+- Iluvatar     
 - MetaX
-- Moore Threads
-- nvidia
-- amd
+- Mthreads     
+- NVIDIA
+- AMD
 - klx
-- tsingmicro
+- Tsingmicro
 
 ## Tools
 
