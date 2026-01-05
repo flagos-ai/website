@@ -5,7 +5,6 @@ This section introduces how to configure FlagGems and generate operators after i
 ```{toctree}
 :maxdepth: 2
 
-build-and-use-source-and-wheel.md
 how-to-use-flaggems.md
 pointwise-dynamic.md
 prepare-for-testing-operator.md

@@ -20,7 +20,7 @@ FlagGems supports two common usage patterns: patching PyTorch ATen ops (recommen
     Once enabled, all supported operators in your code will automatically be replaced with the optimized FlagGems implementations, no further changes needed.
 
   - Scoped enablement
-    To apply FlagGems optimizations across your entire script or interactive session:
+    To apply FlagGems optimizations only within a specific block or scope:
 
      ```{code-block} python
       import torch

@@ -300,7 +300,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## 7.DeepSeek with vLLM
+## 7. DeepSeek with vLLM
 
 Shows FlagGems integration with DeepSeek-V3 model in vLLM, including forcing specific attention backend and using bfloat16 precision.
 

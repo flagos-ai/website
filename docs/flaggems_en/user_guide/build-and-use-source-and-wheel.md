@@ -1,4 +1,4 @@
-# # Build and install distribution packages
+# Build and install distribution packages
 
 This section introduces how to build source and wheel packages and install FlagGems through these packages.
 

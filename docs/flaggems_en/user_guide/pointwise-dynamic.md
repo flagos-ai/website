@@ -26,13 +26,13 @@ We propose a code generation based approach to solve these problems. The princip
 
 - The common internal facilities should be configurable for adaption of different backends.
 
-The result is a decorator `@pointwise_dynamic`. It provides a common wrapper for pointwise operator and mechanism to generate triton kernels and corresponding wrappers based on the operation and the input configureations.
+The result is a decorator `@pointwise_dynamic`. It provides a common wrapper for pointwise operator and mechanism to generate triton kernels and corresponding wrappers based on the operation and the input configurations.
 
 ## Code generation
 
 The basic usage of pointwise_dynamic is to decorate a triton.jit function that has return value, which is used to map inputs to outputs. The jit function is similar to a function with `__device__` declaration specifier, a function that can be called from device. And we generate a triton jit function to call it, which acts like a cuda kernel(a function with `__global__` declaration specifier) that loads and stores data at global memory.
 
-In order to support input tensors of different rank, shape, stride, we pass the shape of the output tensor (which is also the task-space for pointwise operation) , and strides of each tensor at every dimension. The shape and strides are unpacked and passed to kernel as integers. Due to the lack of support for tuple as arguments to Triton kernels, we have to generate different kernels for different number of integers in the shape and strides. Although Triton supports tuple as arguemnts since version 3.3, it does not support all operation on tuples(indexing, iteration, ...).
+In order to support input tensors of different rank, shape, stride, we pass the shape of the output tensor (which is also the task-space for pointwise operation) , and strides of each tensor at every dimension. The shape and strides are unpacked and passed to kernel as integers. Due to the lack of support for tuple as arguments to Triton kernels, we have to generate different kernels for different number of integers in the shape and strides. Although Triton supports tuple as arguments since version 3.3, it does not support all operation on tuples(indexing, iteration, ...).e
 
 In the triton kernel, we map indices in task-space to the tensor multi-index according to the shape of the task space. Then we map them from tensor multi-index to memory offsets on each tensor according to its strides at each dimension. For example, for a binary add operation of tensor of shape `(2, 3)` and `(2, 3)`, the task space is `(2, 3)`, then task-id 4 is mapped to `(1, 1)` in task space. Say that the strides for the lhs are `(3, 1)`, the memory offset at the tensor is 4, and the strides for the rhs are `(1, 2)`, thus the memory offset for it is 3.
 
@@ -46,11 +46,11 @@ In addition to kernels, we also generate wrappers for the corresponding kernel. 
 
 ## MetaData computation
 
-Since pointwise operators shares similar logic at meta data computation, which has been implemented as a common function used by all `PointwiseDynamicFunction`s. It involes:
+Since pointwise operators shares similar logic at meta data computation, which has been implemented as a common function used by all `PointwiseDynamicFunction`s. It involves:
 
 - shape inference: infer the output shape by broadcasting input tensor shape;
 
-- ouput layout inference: infer an appropriate layout (stride order) for output tensors if necessary;
+- output layout inference: infer an appropriate layout (stride order) for output tensors if necessary;
 
 - type promotion: infer output dtypes according to prescribed rules;
 
@@ -60,13 +60,13 @@ Since pointwise operators shares similar logic at meta data computation, which h
 
 - infer the rank of the task-space. This is a factor related to the code generation which depends on the arguments. It also involes trying to reduce the dimension of task-space to 1 when all pre-allocated tensors are dense and non-overlapping and have the same size and stride for each dimension.
 
-Pre-allocated output tensors can also be passed into `PointwiseDynamicFunctions`. In the cases where there are pre-allocated tensors in output tensors, the shape, layout, dtype and device of theses pre-allocated tensors are respected and checked.
+Pre-allocated output tensors can also be passed into `PointwiseDynamicFunctions`. In the cases where there are pre-allocated tensors in output tensors, the shape, layout, dtype and device of these pre-allocated tensors are respected and checked.
 
 The meta data computation can also be skipped, but in this case, you should ensure that the outputs have correct meta data and are pre-allocated. And you should provide the rank of the task-space.
 
 ## Caching and dispatching
 
-The decorator `pointwise_dynamic` returns a `PointwiseDynamicFunction` object, which servers as the proxy to all the decorated function. It caches call the generated python modules and dispatches to them.
+The decorator `pointwise_dynamic` returns a `PointwiseDynamicFunction` object, which serves as the proxy to all the decorated function. It caches call the generated python modules and dispatches to them.
 
 The dispatch result depends only on the rank of the task-space, rather than the shape of the task-space.
 
@@ -76,7 +76,7 @@ The dispatch result depends only on the rank of the task-space, rather than the 
 
 Decorating the pointwise operator function with `pointwise_dynamic` can save the manual handling of tensor addressing, tensor read/write, parallel tiling, tensor broadcasting, dynamic dimensions, non-contiguous storage, type promotion, etc.
 
-For example, in the following code, you only need to provide a Triton jit function describing the computational logic (the Payload), the decorated function can then take torch tesors as inputs and outputs, and support broadcasting, type-promotion, etc.
+For example, in the following code, you only need to provide a Triton jit function describing the computational logic (the Payload), the decorated function can then take torch tensors as inputs and outputs, and support broadcasting, type-promotion, etc.
 
 ```python
 @pointwise_dynamic(promotion_methods=[(0, "COMPLEX_TO_FLOAT")])
@@ -110,7 +110,7 @@ b = torch.randn(256, device="cuda")
 add_func(a, b, 0.2)
 ```
 
-### Ouput dtypes
+### Output dtypes
 
 For pointwise operators to allocate outputs with correct dtype, `promotion_methods` is required. Since the output dtype may be depedent on the input dtypes with some rules, specifying the rule is more expressive than providing output dtypes directly.
 
