@@ -25,17 +25,17 @@ Have a quick view of FlagGems, and also some basic concepts.
 :link: getting_started/getting-started
 :link-type: doc
 
-Outlines the installation requirements for FlagGems and provides step-by-step instructions from installing it to trying out experimental operators.
+Outlines the installation requirements for FlagGems and provides step-by-step instructions from installation to trying out experimental operators.
 
 +++
 [Learn more »](getting_started/getting-started.md)
 :::
 
-:::{grid-item-card} {octicon}`broadcast;1.5em;sd-mr-1` Use Cases
+:::{grid-item-card} {octicon}`broadcast;1.5em;sd-mr-1` User Guide
 :link: user_guide/user-guide
 :link-type: doc
 
-Guides you how to generate operators and test operators and models.
+Guides you how to generate operators, and test operators and models.
 
 +++
 [Learn more »](user_guide/user-guide.md)

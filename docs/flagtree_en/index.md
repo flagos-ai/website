@@ -25,13 +25,13 @@ Have a quick view of FlagTree, and also some basic concepts.
 :link: getting_started/getting-started
 :link-type: doc
 
-Outlines the installation requirements for FlagTree and provides step-by-step instructions for setting it up with different backends.
+Outlines the installation requirements for FlagTree and provides step-by-step instructions for setting it up for various backends.
 
 +++
 [Learn more »](getting_started/getting-started.md)
 :::
 
-:::{grid-item-card} {octicon}`broadcast;1.5em;sd-mr-1` Use Cases
+:::{grid-item-card} {octicon}`broadcast;1.5em;sd-mr-1` User Guide
 :link: user_guide/user-guide
 :link-type: doc
 
