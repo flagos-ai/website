@@ -1,4 +1,4 @@
-# Pytest in FlagGems
+# Pytest
 
 FlagGems uses `pytest` for operator accuracy and performance testing, and further leverages Triton's `triton.testing.do_bench` for kernel-level performance evaluation.
 

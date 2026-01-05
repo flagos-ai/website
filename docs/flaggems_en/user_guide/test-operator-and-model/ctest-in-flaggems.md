@@ -1,4 +1,4 @@
-# C++ Tests in FlagGems
+# C++ tests
 
 If you build FlagGems with C extensions with `FLAGGEMS_BUILD_CTESTS` cmake option `ON`, you can run the ctest in the dir `FlagGems/build/cpython-3xx` with command:
 
