@@ -1,10 +1,12 @@
-# Environment configuration
+# User Guide
 
-Refer to the environment setup section in the [getting started](getting_started.md) page.
+## Environment configuration
+
+Refer to the environment setup section in the [](getting-started.md) page.
 
 ## Installation and compilation
 
-Refer to [getting started](getting_started.md) for FlagCX compilation and installation.
+Refer to [](getting-started.md) for FlagCX compilation and installation.
 
 ## Homogeneous tests using FlagCX
 
@@ -12,7 +14,7 @@ Refer to [getting started](getting_started.md) for FlagCX compilation and instal
 
 1. Build and Installation
 
-   Refer to the Communication API test build and installation section in [getting_started.md](getting_started.md).
+   Refer to the Communication API test build and installation section in [](getting-started.md).
 
 2. Communication API Test
 
@@ -22,12 +24,12 @@ Refer to [getting started](getting_started.md) for FlagCX compilation and instal
 
    **Description**
 
-   -  `test_allreduce` is a performance benchmark for AllReduce operations built on MPI and FlagCX.
+   - `test_allreduce` is a performance benchmark for AllReduce operations built on MPI and FlagCX.
       Each MPI process is bound to a single GPU.
       The program runs warm-up iterations followed by timed measurements across a user-defined range of
       message sizes (minimum, maximum, and step).
 
-   -  For every message size, the benchmark reports:
+   - For every message size, the benchmark reports:
      - Average latency
      - Estimated bandwidth
      - Buffer fragments for correctness verification
@@ -83,7 +85,7 @@ Refer to [getting started](getting_started.md) for FlagCX compilation and instal
 
 1. Build and installation
 
-   Refer to [getting started](getting_started.md) for instructions on building and installing the Torch API test.
+   Refer to [](getting-started.md) for instructions on building and installing the Torch API test.
 
 2. Torch API test execution
 
@@ -139,12 +141,11 @@ Refer to [getting started](getting_started.md) for FlagCX compilation and instal
    - `master_port`: Port used by the master node to establish the process group.
      All nodes must use the same port, and the port has to be available on all nodes.
    - `example.py`: Torch API test script.
-   - Refer to [enviroment variables](enviroment_variables.md) for the usage of the various `FLAGCX_XXX` environment variables.
+   - Refer to [](enviroment_variables.md) for the usage of the various `FLAGCX_XXX` environment variables.
 
 3. Sample screenshot from a correct performance test
 
    ![sample_screenshot_of_correct_performance_test.png](images/sample_screenshot_of_correct_performance_test.png)
-
 
 ## Homogeneous training with FlagCX + FlagScale
 
@@ -152,7 +153,7 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
 
 1. Build and installation
 
-   Refer to the Environment Setup and Build & Installation section in the [getting started](./getting_started.md) page.
+   Refer to the Environment Setup and Build & Installation section in the [](getting-started.md) page.
 
 2. Data preparation
 
@@ -198,10 +199,10 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
 
      - Modify `runner` settings under `experiment`
 
-       * **hostfile**: For a homogeneous (single-node) mode test, comment out the `hostfile` line.
+       - **hostfile**: For a homogeneous (single-node) mode test, comment out the `hostfile` line.
          Only configure it for heterogeneous (multi-node) mode setups.
 
-       * **envs**: Set GPU device IDs using `CUDA_VISIBLE_DEVICES`, for example:
+       - **envs**: Set GPU device IDs using `CUDA_VISIBLE_DEVICES`, for example:
 
          ```yaml
          CUDA_VISIBLE_DEVICES: 0,1,2,3,4,5,6,7
@@ -251,10 +252,8 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
 
 5. Download tokenizer
 
-
    Download the tokenizer corresponding to the model.
    The files are available at: [Meta-LLaMA-3-8B-Instruct Tokenizer](https://www.modelscope.cn/models/LLM-Research/Meta-Llama-3-8B-Instruct/files?utm_source=chatgpt.com).
-
 
    It is recommended to download the tokenizer via the command line.
    Place the downloaded tokenizer files in the path specified by `tokenizer_path` in your configuration (`8b.yaml`).
@@ -287,6 +286,7 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
    ```
 
    To stop the training:
+
    ```shell
    python run.py --config-path ./examples/llama3/conf --config-name train action=stop 
    ```
@@ -314,7 +314,7 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
 
 1. Build and Installation
 
-   Refer to the [getting started](./getting_started.md) documentation for instructions on
+   Refer to the [](getting-started.md) documentation for instructions on
    environment setup, creating symbolic links, and how to build and install the software.
 
 2. Verify MPICH Installation
@@ -354,7 +354,7 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
      ```shell
      export HYDRA_LAUNCHER_EXTRA_ARGS="-p 8010"
      ```
-     
+
      Here, `8010` should match the configuration set during SSH passwordless login.
 
    - Run the heterogeneous Communication API test script on Host 1:
@@ -375,15 +375,14 @@ The following steps shows an example in which we run the LLaMA3-8B model on Nvid
        /root/FlagCX/test/perf/test_allreduce -b 128K -e 4G -f 2 -w 5 -n 100 -p 1`
      ```
 
-     - Refer to [enviroment_variables.md](enviroment_variables.md) for the meaning and usage of `FLAGCX_XXX` environment variables.
-
+     - Refer to [](enviroment-ariables.md) for the meaning and usage of `FLAGCX_XXX` environment variables.
 
    - **Note:** When using two GPUs per node in the heterogeneous Communication API test, some warnings may indicate that each node only has 1 GPU active. In this case, FlagCX will skip GPU-to-GPU AllReduce and fall back to host-based communication.
 
      - As a result, GPU utilization may show 0%, and the overall AllReduce runtime may be much longer.
-     
+
      - However, the computation results are correct, and this behavior is expected.
 
      - To fully utilize GPU acceleration for heterogeneous testing, use 2+2 GPUs (4 GPUs total) across the nodes.
-     
+
        ![heterogeneous_communication_api_test.png](images/heterogeneous_communication_api_test.png)

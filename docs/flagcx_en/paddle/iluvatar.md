@@ -1,24 +1,35 @@
 # Guide for using paddle with FlagCX on iluvatar machines
+
 ## Environment setup
+
 1. prepare a docker container on Iluvatar machines
 2. start the docker container
+
     ```bash
     sudo docker exec -it [container_name] bash
     ```
+
 3. clone PaddleCustomDevice
+
     ```bash
     git clone https://github.com/PaddlePaddle/PaddleCustomDevice.git
     ```
+
 4. clone FlagCX
+
     ```bash
     git clone https://github.com/flagos-ai/FlagCX.git
     ```
+
 ## Compile paddle with FlagCX
+
 1. cd into iluvatar_gpu directory
+
     ```bash
     cd PaddleCustomDevice/backends/iluvatar_gpu
     ```
-2. modify default build script to enable compiling with FlagCX  
+
+2. modify default build script to enable compiling with FlagCX 
     - In `build_paddle.sh`
         ![alt text](../images/iluvatar_build_paddle.png)
         set `BUILD_WITH_FLAGCX=1` and the correct location for `FLAGCX_ROOT`
@@ -26,29 +37,42 @@
         ![alt text](../images/iluvatar_cmakelists.png)
         change `nccl` to `${FLAGCX_LIB}`
 3. run build script
+
     ```bash
     bash build_paddle.sh
     ```
+
 4. run install script
+
     ```bash
     bash install_paddle.sh
     ```
+
 __Note__: To build Paddle with FlagCX on Iluvatar machines, we need to ensure that FlagCX is built before building Paddle
 
 ## Train model using paddle + FlagCX
+
 We now support training ERNIE4.5 on Iluvatar machines using Paddle + FlagCX. Please refer to the following steps to get started
-1. Get ERNIE-4.5-Lite model from huggingface   
-    ERNIE-4.5-Lite corresponds to ERNIE-4.5-21B-A3B-Paddle 
+
+1. Get ERNIE-4.5-Lite model from huggingface
+
+    ERNIE-4.5-Lite corresponds to ERNIE-4.5-21B-A3B-Paddle
+
 2. clone ERNIE repo
+
     ```bash
     git clone https://github.com/PaddlePaddle/ERNIE.git
     ```
+
 3. install dependencies
+
     ```bash
     cd ERNIE
     pip install -r requirements/gpu/requirements.txt
     ```
+
 4. create a training script; please refer to the training script below
+
     ```bash
     #!/bin/bash
     # Copyright (c) 2025 PaddlePaddle Authors. All Rights Reserved.
@@ -160,5 +184,3 @@ We now support training ERNIE4.5 on Iluvatar machines using Paddle + FlagCX. Ple
         --moe_multimodal_dispatch_use_allgather "" \
         --unified_checkpoint_config "async_save"
     ```
-
-

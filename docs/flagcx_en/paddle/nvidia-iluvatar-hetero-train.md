@@ -1,6 +1,6 @@
 # Guide for training on nvidia and iluvatar GPUs
 ## Environment setup
-Please refer to [nvidia_setup_guide](nvidia.md) and [iluvatar_setup_guide](iluvatar.md) for environment setup and compiling Paddle with FlagCX on Nvidia and Iluvatar machines.
+Please refer to [](nvidia.md) and [](iluvatar.md) for environment setup and compiling Paddle with FlagCX on Nvidia and Iluvatar machines.
 ## Training on heterogeneous ai accelerators (nvidia GPU + iluvatar GPU)
 We now support training ERNIE4.5 using Nvidia GPUs and Iluvatar GPUs together. Please refer to the following steps to get started
 1. Get ERNIE-4.5-Lite model from huggingface   

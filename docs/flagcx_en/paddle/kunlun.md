@@ -1,16 +1,24 @@
 # Guide for using paddle with FlagCX on XPU machines
+
 ## Environment setup
+
 1. prepare a docker container on XPU machines
 2. start the docker container
+
     ```bash
     sudo docker exec -it [container_name] bash
     ```
+
 3. clone Paddle
+
     ```bash
     git clone https://github.com/PaddlePaddle/Paddle.git
     ```
+
 ## Compile paddle with FlagCX
+
 Please follow the following commands
+
 ```bash
 # Checkout develop branch
 cd Paddle && git checkout develop
@@ -45,17 +53,24 @@ python -c "import paddle;paddle.utils.run_check()"
 ```
 
 ## Train model using paddle + FlagCX
+
 We now support training GPT3 on XPU machines using Paddle + FlagCX. Please refer to the following steps to get started
+
 1. clone PaddleNLP
+
     ```bash
     git clone https://github.com/PaddlePaddle/PaddleNLP.git
     ```
+
 2. install dependencies
+
     ```bash
     pip install -r requirements.txt
     pip install -r requirements-dev.txt
     ```
+
 3. download data
+
     ```bash
     # create data repository
     mkdir -p ./llm/data 
@@ -65,8 +80,10 @@ We now support training GPT3 on XPU machines using Paddle + FlagCX. Please refer
     wget https://bj.bcebos.com/paddlenlp/models/transformers/gpt/data/gpt2_openwebtext_100k.bin
     wget https://bj.bcebos.com/paddlenlp/models/transformers/gpt/data/gpt2_openwebtext_100k.idx 
     ```
+
 4. prepare training script  
     please refer to the following script for training GPT3
+
     ```bash
     # this is the script for training gpt3 on XPU machines using flagcx as communication backend
     # define root path
@@ -105,6 +122,7 @@ We now support training GPT3 on XPU machines using Paddle + FlagCX. Please refer
     echo "max_memory_reserved(GB):"
     cat ${log_dir}/workerlog.0 | grep "interval_tokens_per_second_per_device:" | awk -F ',' '{print $8}' | tail -n 1
     ```
+
     __Note__:  
     To train model using xpu, we need to specify the device type in model config json file:
     - `"device": "xpu"`
