@@ -297,7 +297,7 @@ if html_theme == "pydata_sphinx_theme":
         html_theme_options["secondary_sidebar_items"][f"{project}/index"] = []
 
     html_context = {
-    "default_mode": "dark"
+    "default_mode": "light"
     }
 
 else:
