@@ -13,7 +13,7 @@ The following table lists the supported hardware platforms:
 | Cambricon    | ✅                     |    ✅    |    ✅    |     ✅    |
 | Hygon        | ✅                     |    ✅    |    ✅    |     ✅    |
 | Iluvatar     | ✅                     |    ✅    |    ✅    |     ✅    |
-| Kunlunxin    | ✅                     |    ✅    |    ✅    |     ✅    |
+| klx          | ✅                     |    ✅    |    ✅    |     ✅    |
 | MetaX        | ✅                     |    ✅    |    ✅    |     ✅    |
 | Mthreads     | ✅                     |    ✅    |    ✅    |     ✅    |
 | NVIDIA       | ✅                     |    ✅    |    ✅    |     ✅    |
