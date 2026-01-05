@@ -295,10 +295,10 @@ if html_theme == "pydata_sphinx_theme":
     for project in all_projects:
         html_sidebars[f"{project}/index"] = []
     
-    # html_context is only applied to PyData Sphinx Theme
-    html_context = {
-        "default_mode": "dark"
-    }
+    # # html_context is only applied to PyData Sphinx Theme
+    # html_context = {
+    #     "default_mode": "dark"
+    # }
 
 else:
     # Sphinx Book Theme configuration for all other projects
