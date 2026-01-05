@@ -347,7 +347,7 @@ else:
     html_context = {
         "main_site_url": main_site_url,
         "main_site_text": main_site_text,
-        "default_mode": "dark"
+        "default_mode": "light"
     }
 
     # No html_sidebars for Sphinx Book Theme
