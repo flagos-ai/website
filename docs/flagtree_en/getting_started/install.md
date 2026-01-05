@@ -47,7 +47,8 @@ Automatic dependency library downloads may be limited by network conditions. You
 ```
 Complete build commands for each backend:
 
-* [iluvatar](https://github.com/FlagTree/flagtree/tree/main/third_party/iluvatar/) <br>
+* [iluvatar](https://github.com/FlagTree/flagtree/tree/main/third_party/iluvatar/)
+  
 Based on Triton 3.1, x64
 
 ```shell
@@ -62,7 +63,8 @@ export FLAGTREE_BACKEND=iluvatar
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* klx [xpu](https://github.com/FlagTree/flagtree/tree/main/third_party/xpu/) <br>
+* klx [xpu](https://github.com/FlagTree/flagtree/tree/main/third_party/xpu/)
+
 Based on Triton 3.0, x64
 
 ```shell
@@ -80,7 +82,8 @@ export FLAGTREE_BACKEND=xpu
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* [mthreads](https://github.com/FlagTree/flagtree/tree/main/third_party/mthreads/) <br>
+* [mthreads](https://github.com/FlagTree/flagtree/tree/main/third_party/mthreads/)
+  
 Based on Triton 3.1, x64/aarch64
 
 ```shell
@@ -102,7 +105,8 @@ export FLAGTREE_BACKEND=mthreads
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* arm [aipu](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/aipu/) <br>
+* arm [aipu](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/aipu/)
+
 Based on Triton 3.3, x64/arm64
 
 ```shell
@@ -117,7 +121,8 @@ export FLAGTREE_BACKEND=aipu
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* [tsingmicro](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/tsingmicro/) <br>
+* [tsingmicro](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/tsingmicro/)
+
 Based on Triton 3.3, x64
 
 ```shell
@@ -134,7 +139,8 @@ export FLAGTREE_BACKEND=tsingmicro
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* [ascend](https://github.com/FlagTree/flagtree/blob/triton_v3.2.x/third_party/ascend/) <br>
+* [ascend](https://github.com/FlagTree/flagtree/blob/triton_v3.2.x/third_party/ascend/)
+  
 Based on Triton 3.2, aarch64
 
 ```shell
@@ -160,7 +166,8 @@ export FLAGTREE_BACKEND=ascend
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* [hcu](https://github.com/FlagTree/flagtree/tree/main/third_party/hcu/) <br>
+* [hcu](https://github.com/FlagTree/flagtree/tree/main/third_party/hcu/)
+
 Based on Triton 3.0, x64
 
 ```shell
@@ -173,7 +180,8 @@ export FLAGTREE_BACKEND=hcu
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* [enflame](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/enflame/) <br>
+* [enflame](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/enflame/)
+
 Based on Triton 3.3, x64
 
 ```shell
@@ -186,7 +194,8 @@ export FLAGTREE_BACKEND=enflame
 python3 -m pip install . --no-build-isolation -v
 ```
 
-* [nvidia](/third_party/nvidia/) <br>
+* [nvidia](/third_party/nvidia/)
+  
 To build with default backends nvidia, amd, triton_shared cpu:
 
 ```shell

@@ -10,7 +10,7 @@ FlagGems is primarily tested on Ubuntu. We recommend using a Linux virtual machi
 
 The following table lists the supported hardware platforms:
 
-zz| Vendor       | Support status         | float16 | float32 | bfloat16 |
+| Vendor       | Support status         | float16 | float32 | bfloat16 |
 |--------------|------------------------|:-------:|:-------:|:--------:|
 | AIPU         | ✅ (Partial support)   |    ✅    |    ✅    |     ✅    |
 | Huawei Ascend| ✅ (Partial support)   |    ✅    |    ✅    |     ✅    |

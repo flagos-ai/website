@@ -56,5 +56,3 @@ The following list includes the supported tools:
 
   - **Backend specific dependencies**  
     For more information, see [Install FlagTree for different backends](/getting_started/install.md#install-flagtree-for-different-backends).
-
-
