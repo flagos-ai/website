@@ -4,8 +4,8 @@ FlagTree includes the following main features:
 
 - **Multi-backend support**
   FlagTree supports a wide range of hardware platforms and has been extensively tested across different hardware configurations. For more information, see [Supported hardware platforms](/getting_started/requirements.md#supported-hardware-platforms).
-- **Tree levels of complier hint languages**
-  FlagTree provides three levels of complier hint languages tailored for different users:
+- **Three levels of compiler hint languages**
+  FlagTree provides three levels of compiler hint languages tailored for different users:
   - TLE-Lite:
     - Design philosophy: Write once, run everywhere.
     - Core concept: By introducing high-level semantic hints rather than mandatory constraints, guide the compiler to perform heuristic optimization. It emphasizes backward compatibility, allowing developers to achieve cross-platform performance improvements with minimal code intrusiveness without disrupting the original Triton programming paradigm.

@@ -20,7 +20,7 @@ Enables chip-specific backend customization through a plugin architecture. These
 
 * Cross-Compilation and Rapid Validation Capabilities
 
-For developer convenience, FlagTree supports compilation on any hardware platform and Python3 import functionality. Cross-compilation is possible when build and runtime environments are compatible (specifically matching or compatible versions of cpython, glibc, glibcxx, and cxxabi), allowing compiled artifacts to run across platforms with corresponding chip deployments.
+For developer convenience, FlagTree supports compilation on any hardware platform and Python 3 import functionality. Cross-compilation is possible when build and runtime environments are compatible (specifically matching or compatible versions of cpython, glibc, glibcxx, and cxxabi), allowing compiled artifacts to run across platforms with corresponding chip deployments.
 
 * CI/CD Integration
 
