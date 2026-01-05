@@ -1,6 +1,8 @@
-# Environment setup
+# Getting Started
 
-## Reference Command for Container Creation
+## Environment setup
+
+**Reference Command for Container Creation:**
 
 Modify the `<Docker name> <mount directory> <mount point>` and choose the `<Docker Image>` as needed.
 
@@ -156,7 +158,6 @@ sudo docker run -itd \
      python -c "import flagcx; print(flagcx)"
      ```
 
-
 ## Homogeneous training with FlagCX + FlagScale
 
 1. Environment Setup
@@ -242,4 +243,4 @@ sudo docker run -itd \
 
    - On each host, compile and install the FlagCX communication API separately.
 
-   - Refer to the section **“Homogeneous Testing with FlagCX”** for detailed steps.
+   - Refer to the section [](#homogeneous-testing-with-flagcx) for detailed steps.

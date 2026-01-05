@@ -4,19 +4,15 @@ FlagCX is now fully integrated into Paddle as an **optional high-performance com
 
 Use the guides below to quickly get started with training models using Paddle + FlagCX.
 
----
-
 ## Homogeneous training
 
 Train on a single type of hardware platform:
 
 | Hardware        | User Guide |
 |:---------------:|:----------|
-| Nvidia GPU      | [Get Started](nvidia.md) |
-| Kunlunxin XPU   | [Get Started](kunlun.md) |
-| Iluvatar GPU    | [Get Started](iluvatar.md) |
-
----
+| Nvidia GPU      | [](nvidia.md) |
+| Kunlunxin XPU   | [](kunlun.md) |
+| Iluvatar GPU    | [](iluvatar.md) |
 
 ## Heterogeneous training
 
@@ -24,12 +20,10 @@ Train across **different hardware platforms** simultaneously:
 
 | Hardware Combination         | User Guide |
 |:----------------------------:|:----------|
-| Nvidia GPU + Iluvatar GPU    | [Get Started](nvidia_iluvatar_hetero_train.md) |
-
+| Nvidia GPU + Iluvatar GPU    | [](nvidia_iluvatar_hetero_train.md) |
 
 ```{toctree}
 :maxdepth: 3
-:caption: Table of Contents
 
 nvidia
 iluvatar
