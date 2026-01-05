@@ -1,0 +1,66 @@
+<!-- docs/_templates/return_to_main.html -->
+<!-- Minimal text link version -->
+<style>
+  .return-to-main-link {
+    display: inline-block;
+    margin-left: 16px;
+    color: #4a5568;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+    font-style: italic; /* Add italic style */
+  }
+  
+  .return-to-main-link:hover {
+    color: #2b6cb0;
+    text-decoration: none;
+  }
+  
+  .return-to-main-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2b6cb0;
+    transition: width 0.3s ease;
+  }
+  
+  .return-to-main-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .return-to-main-link {
+      color: #cbd5e0;
+    }
+    
+    .return-to-main-link:hover {
+      color: #90cdf4;
+    }
+    
+    .return-to-main-link::after {
+      background-color: #90cdf4;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .return-to-main-link {
+      margin-left: 12px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<a href="{{ main_site_url }}" 
+   class="return-to-main-link"
+   aria-label="{{ main_site_text }}"
+   title="{{ main_site_text }}">
+  ← {{ main_site_text }}
+</a>

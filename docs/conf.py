@@ -177,7 +177,7 @@ ogp_custom_meta_tags = (
 ogp_enable_meta_description = True
 ogp_description_length = 300
 
-templates_path = ["_templates"]
+# templates_path = ["_templates"]
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
 
 master_doc = "index"
@@ -295,27 +295,63 @@ if html_theme == "pydata_sphinx_theme":
     for project in all_projects:
         html_sidebars[f"{project}/index"] = []
     
-    # # html_context is only applied to PyData Sphinx Theme
-    # html_context = {
-    #     "default_mode": "dark"
-    # }
+    # html_context is only applied to PyData Sphinx Theme
+    html_context = {
+        "default_mode": "dark"
+    }
 
 else:
     # Sphinx Book Theme configuration for all other projects
+
+    # # repo URL per project
+    # repository_urls = {
+    #     "flagcx_en": "https://github.com/flagos-ai/FlagCX",
+    #     "flagcx_zh": "https://github.com/flagos-ai/FlagCX",
+    #     "flaggems_en": "https://github.com/flagos-ai/FlagGems",
+    #     "flaggems_zh": "https://github.com/flagos-ai/FlagGems",
+    #     "flagtree_en": "https://github.com/flagos-ai/FlagTree",
+    #     "flagtree_zh": "https://github.com/flagos-ai/FlagTree",
+    #     "flagrelease_en": "https://github.com/flagos-ai/FlagRelease",
+    #     "flagrelease_zh": "https://github.com/flagos-ai/FlagRelease",
+    #     "flagperf_en": "https://github.com/flagos-ai/FlagPerf",
+    #     "flagperf_zh": "https://github.com/flagos-ai/FlagPerf",
+    # }
+    
+    # # Obtain the current repo URL, if failed, set the default value
+    # current_repo_url = repository_urls.get(docset, "https://github.com/flagos-ai")
+
+    if docset.endswith("_en"):
+        main_site_url = "https://docs.flagos.io/en/latest/"
+        main_site_text = "Back to FlagOS Documentation"
+    else:
+        main_site_url = "https://docs.flagos.io/zh/latest/"
+        main_site_text = "返回 FlagOS 文档"
+
+    templates_path = ["_templates"]
+
+    # Sphinx Book Theme configuration for all other projects
     html_theme_options = {
         "logo": {
-            "image_light": "img/logo.png",
-            "image_dark": "img/logo.png",
+            "image_light": "_static/dark-logo.svg",
+            "image_dark": "_static/light-logo.svg",
         },
         "home_page_in_toc": True,
         "use_download_button": False,
-        "repository_url": "https://github.com/flagos-ai/KernelGen",
+        "repository_url": "https://github.com/flagos-ai/website",
         "use_edit_page_button": True,
         "use_repository_button": True,
+        "navbar_center": ["back_to_main.html"],
+        }
+
+    html_context = {
+        "main_site_url": main_site_url,
+        "main_site_text": main_site_text,
     }
+
     # No html_sidebars for Sphinx Book Theme
     html_sidebars = {}
     # No html_context for Sphinx Book Theme
+    html_last_updated_fmt = '%b %d, %Y %H:%M'
 
 rst_epilog = """
 .. |org_brand| replace:: KernelGen Community
