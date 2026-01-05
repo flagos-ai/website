@@ -256,6 +256,8 @@ if docset in ["flagos_en", "flagos_zh"]:
     html_theme = "pydata_sphinx_theme"
 else:
     html_theme = "sphinx_book_theme"
+
+
 html_static_path = ["_static", f"{docset}/_static"]
 html_css_files = ["custom.css", "homepage.css"]
 # Do not add sphinx_prompt_css.css for now, it might not exist
@@ -272,33 +274,55 @@ html_sidebars = {}
 for project in all_projects:
     html_sidebars[f"{project}/index"] = []
 
-html_theme_options = {
-    # "logo_only": False,
-    "logo": {
-        "text": "Documentation",
-        # "image_light": "_static/logo-light.png",
-        # "image_dark": "_static/logo-dark.png",
-    },
-    "home_page_in_toc": True,
-    "use_download_button": False,
-    "repository_url": "https://github.com/flagos-ai/KernelGen",
-    # "use_edit_page_button": True,
-    # "github_url": "https://github.com/flagos-ai/KernelGen",
-    # "repository_branch": "master",
-    # "path_to_docs": "docs",
-    "use_repository_button": True,
-    # "announcement": "<b>v3.0.0</b> is now out! See the Changelog for details",
-    "secondary_sidebar_items": {},
-    "footer_start": ["copyright"],
-    "footer_end": [],
-    "show_sphinx": False,
-    # Note we have omitted `theme-switcher` below
-    "navbar_end": ["navbar-icon-links"]
-}
+# Theme-specific configurations
+if html_theme == "pydata_sphinx_theme":
+    # PyData Sphinx Theme configuration for flagos_en and flagos_zh
+    html_theme_options = {
+        "logo": {
+            "text": "Documentation",
+        },
+        "home_page_in_toc": True,
+        "use_download_button": False,
+        "repository_url": "https://github.com/flagos-ai/KernelGen",
+        "use_repository_button": True,
+        "secondary_sidebar_items": {},
+        "footer_start": ["copyright"],
+        "footer_end": [],
+        "show_sphinx": False,
+        "navbar_end": ["navbar-icon-links"]
+    }
+    
+    # Update secondary sidebar items for flagos projects
+    for project in ["flagos_en", "flagos_zh"]:
+        html_theme_options["secondary_sidebar_items"][f"{project}/index"] = []
 
-# Update secondary sidebar items for all projects
-for project in all_projects:
-    html_theme_options["secondary_sidebar_items"][f"{project}/index"] = []
+else:
+    # Sphinx Book Theme configuration for all other projects
+    html_theme_options = {
+        "home_page_in_toc": True,
+        "repository_url": "https://github.com/flagos-ai/KernelGen",
+        "repository_branch": "main",
+        "path_to_docs": f"docs/{docset}",
+        "use_repository_button": True,
+        "use_edit_page_button": True,
+        "use_issues_button": True,
+        "show_navbar_depth": 2,
+        "show_toc_level": 3,
+        "navbar_align": "left",
+        # Optional: Add extra navigation elements
+        "extra_navbar": "",
+        "extra_footer": "",
+        "pygment_light_style": "default",
+        "pygment_dark_style": "monokai",
+        # Show "Previous" and "Next" buttons at the bottom
+        "show_prev_next": True,
+        # Show breadcrumbs navigation
+        "show_breadcrumbs": True,
+        # Expand all sidebar sections by default
+        "expand_sections": [],
+        # Single page mode (optional)
+        "single_page": False,
+    }
 
 html_context = {
     "default_mode": "dark"
