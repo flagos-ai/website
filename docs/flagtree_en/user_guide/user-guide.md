@@ -1,6 +1,6 @@
 # User Guide
 
-This section introduces how to configure FlagGems and generate operators through it after installation.
+This section introduces how to use Hints compiler language to optimize the compilation.
 
 ```{toctree}
 :maxdepth: 2
