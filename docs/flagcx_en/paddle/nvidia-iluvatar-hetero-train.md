@@ -1,20 +1,32 @@
 # Guide for training on nvidia and iluvatar GPUs
+
 ## Environment setup
+
 Please refer to [](nvidia.md) and [](iluvatar.md) for environment setup and compiling Paddle with FlagCX on Nvidia and Iluvatar machines.
+
 ## Training on heterogeneous ai accelerators (nvidia GPU + iluvatar GPU)
+
 We now support training ERNIE4.5 using Nvidia GPUs and Iluvatar GPUs together. Please refer to the following steps to get started
-1. Get ERNIE-4.5-Lite model from huggingface   
-    ERNIE-4.5-Lite corresponds to ERNIE-4.5-21B-A3B-Paddle 
+
+1. Get ERNIE-4.5-Lite model from huggingface
+
+    ERNIE-4.5-Lite corresponds to ERNIE-4.5-21B-A3B-Paddle
+
 2. clone ERNIE repo
+
     ```bash
     git clone https://github.com/PaddlePaddle/ERNIE.git
     ```
+
 3. install dependencies
+
     ```bash
     cd ERNIE
     pip install -r requirements/gpu/requirements.txt
     ```
+
 4. create a training script
+
     ```bash
     #!/bin/bash
     # Copyright (c) 2025 PaddlePaddle Authors. All Rights Reserved.
@@ -130,6 +142,7 @@ We now support training ERNIE4.5 using Nvidia GPUs and Iluvatar GPUs together. P
         --moe_multimodal_dispatch_use_allgather "" \
         --unified_checkpoint_config "async_save"
     ```
+
     __Note__: Since we set `tensor_parallel_degree = 8` and `pipeline_parallel_degree = 2`, we need to modify the model config accordingly, see below:  
     In `ERNIE-4.5-Lite/config.json`, set
     - `"num_attention_heads": 16,`

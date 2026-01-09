@@ -1,4 +1,4 @@
-# Training models with paddle and FlagCX
+# Training Models with Paddle and FlagCX
 
 FlagCX is now fully integrated into Paddle as an **optional high-performance communication backend**. This integration enables efficient distributed training on multiple hardware platforms, including support for **heterogeneous training** on Nvidia and Iluvatar GPUs.  
 

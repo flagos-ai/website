@@ -1,4 +1,4 @@
-# Build guide
+# Build Guide
 
 1. Clone the repository:
 

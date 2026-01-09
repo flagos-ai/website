@@ -1,4 +1,4 @@
-# Release History
+# Release Notes
 
 - **[2025/11]** Released [v0.7](https://github.com/flagos-ai/FlagCX/releases/tag/v0.7.0):
 
