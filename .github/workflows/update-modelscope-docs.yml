@@ -1,0 +1,88 @@
+```yaml
+name: Update ModelScope Documentation
+
+on:
+  # Scheduled trigger (daily at 2:00 UTC, which is 10:00 Beijing Time)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Manual trigger (run via GitHub web interface)
+  workflow_dispatch:
+  
+  # Trigger when model_list.txt or workflow files change
+  push:
+    paths:
+      - 'docs/flagrelease_en/model_list.txt'
+      - '.github/workflows/update-modelscope-docs.yml'
+      - 'docs/scripts/download_readmes.py'
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🛎️ Checkout repository code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: 🐍 Set up Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+        # Cache dependencies to improve subsequent run speed
+        cache-dependency-path: 'docs/scripts/requirements.txt'
+    
+    - name: 📦 Install Python dependencies
+      run: |
+        # Install dependencies in the root directory, but specify the requirements.txt path
+        pip install -r docs/scripts/requirements.txt
+    
+    - name: 📥 Download ModelScope documentation
+      id: download
+      run: |
+        # Key fix: Execute script in the repository root directory and pass the correct path
+        cd /home/runner/work/test-github-actions/test-github-actions
+        python docs/scripts/download_readmes.py
+      continue-on-error: true
+    
+    - name: 📊 Check for file changes
+      id: check-changes
+      run: |
+        # Check if any files have been modified or added
+        git add -N .
+        if git diff --name-only --exit-code docs/flagrelease_en/model_readmes/; then
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+          echo "🔄 No file changes detected"
+        else
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+          echo "📝 File changes detected:"
+          git diff --name-only docs/flagrelease_en/model_readmes/
+        fi
+    
+    - name: 💾 Commit and push changes
+      if: steps.check-changes.outputs.has_changes == 'true'
+      run: |
+        # Configure Git user
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Add changed files (only under flagrelease_en directory)
+        git add docs/flagrelease_en/model_readmes/
+        
+        # Commit changes
+        git commit -m "📚 Auto-update ModelScope documentation [$(date +'%Y-%m-%d %H:%M')]"
+        
+        # Push to repository
+        git push origin HEAD:${{ github.ref_name }}
+        echo "✅ Changes pushed to repository"
+    
+    - name: 📋 Generate execution report
+      if: always()
+      run: |
+        echo "Workflow execution status: ${{ job.status }}"
+        echo "Changes detected: ${{ steps.check-changes.outputs.has_changes }}"
+        echo "Completion time: $(date)"
+```
