@@ -5,14 +5,15 @@ This section includes requirements of using FlagTree, including supported platfo
 ## Supported hardware platforms
 
 The following list includes the supported hardware platforms:
+
 - AIPU
 - Cambricon
-- enflame
+- Enflame
 - Huawei Ascend
 - Hygon
-- Iluvatar     
+- Iluvatar
 - MetaX
-- Mthreads     
+- Mthreads
 - NVIDIA
 - AMD
 - klx
@@ -39,7 +40,6 @@ The following list includes the supported tools:
     | `libxml2`      | The GNOME XML library runtime. Provides software libraries for parsing, manipulating, and generating XML data, and is used by many applications and dependencies. |
     | `libxml2-dev`  | The GNOME XML library development files. Includes header files and symbolic links necessary for developing software that uses `libxml2` (e.g., compiling XML-parsing programs). |
 
-
 - **Python dependencies**  
   The following table lists the Python dependencies. These dependencies are included in the `requirements.txt` file and will be automatically installed when using the `pip install` command.
 
@@ -52,7 +52,12 @@ The following list includes the supported tools:
     | `pytest`     | A mature full-featured Python testing framework. It is used for writing and running simple unit tests as well as complex functional tests. |
     | `scipy`      | A fundamental library for scientific computing and technical computing in Python. It builds on NumPy and provides modules for optimization, integration, interpolation, eigenvalue problems, algebra, and other tasks. |
     | `filelock`   | A platform-independent file-based lock for Python. It is used to synchronize access to a shared resource (like a file) between multiple Python processes or threads. |
-    | `nanobind`   | A lightweight C++ library that exposes C++ types and functions to Python. It is used to create Python bindings for C++ code with minimal overhead (similar to pybind11, but faster). | 
+    | `nanobind`   | A lightweight C++ library that exposes C++ types and functions to Python. It is used to create Python bindings for C++ code with minimal overhead (similar to pybind11, but faster). |
 
   - **Backend specific dependencies**  
     For more information, see [Install FlagTree for different backends](/getting_started/install.md#install-flagtree-for-different-backends).
+  
+## Features on different branches
+
+- Hints are available on specific branches. For more information, see [Use Hints](/user_guide/use-hints.md).
+- TLE-Lite, TLE-Struct, and TLE-Raw are available on trition_3.5.x. for GPU vendors and Huawei Ascend.

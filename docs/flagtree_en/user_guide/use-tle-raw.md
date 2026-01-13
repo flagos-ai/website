@@ -1,6 +1,6 @@
 # Use TLE-Raw
 
-This section introduces how to use TLE-Raw.
+This section introduces how to use TLE-Raw. TLE-Raw is available on trition_3.5.x branch.
 
 ## MLIR
 

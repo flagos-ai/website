@@ -1,6 +1,6 @@
 # Use TLE-Lite
 
-This section introduces how to use TLE-Lite.
+This section introduces how to use TLE-Lite. TLE-Lite is available on trition_3.5.x branch.
 
 ## Memory management
 

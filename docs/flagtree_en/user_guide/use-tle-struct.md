@@ -1,6 +1,6 @@
 # Use TLE-Struct
 
-This section introduces how to use TLE-Struct.
+This section introduces how to use TLE-Struct. TLE-Struct is available on trition_3.5.x branch.
 
 ## GPU memory management
 
