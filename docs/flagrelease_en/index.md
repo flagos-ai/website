@@ -40,7 +40,7 @@ Lists the FlagOS hardware-specific versions of open-source large models.
 :maxdepth: 5
 :hidden:
 
-FlagGems_overview/FlagGems-overview.md
+FlagRelease_overview/FlagRelease-overview.md
 getting_started/getting-started.md
 ```
 
