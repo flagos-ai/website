@@ -35,7 +35,7 @@ jobs:
     
     - name: Install Python dependencies
       run: |
-        pip install -r docs/scripts/requirements.txt
+        pip install -r requirements.txt
     
     - name: Download ModelScope documentation
       id: download
