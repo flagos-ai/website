@@ -1,3 +1,20 @@
+name: Update ModelScope Documentation
+
+on:
+  # Scheduled trigger (daily at 2:00 UTC, which is 10:00 Beijing Time)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Manual trigger (run via GitHub web interface)
+  workflow_dispatch:
+  
+  # Trigger when model_list.txt or workflow files change
+  push:
+    paths:
+      - 'docs/flagrelease_en/model_list.txt'
+      - '.github/workflows/update-modelscope-docs.yml'
+      - 'docs/scripts/download_readmes.py'
+
 jobs:
   update-docs:
     runs-on: ubuntu-latest
