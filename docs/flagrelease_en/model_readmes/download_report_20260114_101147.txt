@@ -1,0 +1,14 @@
+# ModelScope Documentation Update Report
+## Generated on: Wed Jan 14 10:11:47 UTC 2026
+## Workflow Run: [#18](https://github.com/flagos-ai/docs/actions/runs/20990200202)
+
+## Summary
+- **Total changes detected:** 0 files
+
+## Model Download Statistics
+- **Last run status:** success
+- **Trigger type:** push
+
+## Next Steps
+Please review the changes in the model documentation files above.
+After merging this PR, the documentation will be updated on the main branch.
