@@ -1,123 +1,58 @@
-name: Update ModelScope Documentation
-
-on:
-  # Scheduled trigger (daily at 2:00 UTC, which is 10:00 Beijing Time)
-  schedule:
-    - cron: '0 2 * * *'
-  
-  # Manual trigger (run via GitHub web interface)
-  workflow_dispatch:
-  
-  # Trigger when model_list.txt or workflow files change
-  push:
-    paths:
-      - 'docs/flagrelease_en/model_list.txt'
-      - '.github/workflows/update-modelscope-docs.yml'
-      - 'docs/scripts/download_readmes.py'
-
 jobs:
   update-docs:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout repository code
-      uses: actions/checkout@v6
-      with:
-        fetch-depth: 0  # Fetch full history for proper git diff
-    
-    - name: Set up Python environment
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pip'
-        cache-dependency-path: 'requirements.txt'
-    
-    - name: Install Python dependencies
-      run: |
-        pip install -r requirements.txt
-    
-    - name: Download ModelScope documentation
-      id: download
-      run: |
-        cd "$GITHUB_WORKSPACE"
-        python docs/scripts/download_readmes.py
-      continue-on-error: true  # Continue even if some downloads fail
-    
-    - name: Generate download report
-      id: generate-report
-      run: |
-        # Create a detailed download report file with success and failure information
-        REPORT_FILE="docs/flagrelease_en/model_readmes/download_report_$(date +'%Y%m%d_%H%M%S').txt"
-        echo "# ModelScope Documentation Update Report" > $REPORT_FILE
-        echo "## Generated on: $(date)" >> $REPORT_FILE
-        echo "## Workflow Run: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $REPORT_FILE
-        echo "" >> $REPORT_FILE
-        
-        # Count the number of updated files
-        if [ -d "docs/flagrelease_en/model_readmes/" ]; then
-          CHANGED_COUNT=$(git diff --name-only docs/flagrelease_en/model_readmes/ 2>/dev/null | wc -l || echo "0")
-          echo "## Summary" >> $REPORT_FILE
-          echo "- **Total changes detected:** $CHANGED_COUNT files" >> $REPORT_FILE
-          echo "" >> $REPORT_FILE
-          
-          if [ "$CHANGED_COUNT" -gt 0 ]; then
-            echo "## Changed Files" >> $REPORT_FILE
-            git diff --name-only docs/flagrelease_en/model_readmes/ | while read file; do
-              echo "- $file" >> $REPORT_FILE
-            done
-            echo "" >> $REPORT_FILE
-          fi
-        fi
-        
-        # Extract statistics from script output if available
-        echo "## Model Download Statistics" >> $REPORT_FILE
-        echo "- **Last run status:** ${{ job.status }}" >> $REPORT_FILE
-        echo "- **Trigger type:** ${{ github.event_name }}" >> $REPORT_FILE
-        if [ "${{ github.event_name }}" = "schedule" ]; then
-          echo "- **Schedule:** Daily at 02:00 UTC (10:00 Beijing Time)" >> $REPORT_FILE
-        fi
-        echo "" >> $REPORT_FILE
-        
-        echo "## Next Steps" >> $REPORT_FILE
-        echo "Please review the changes in the model documentation files above." >> $REPORT_FILE
-        echo "After merging this PR, the documentation will be updated on the main branch." >> $REPORT_FILE
-        
-        echo "report_file=$REPORT_FILE" >> $GITHUB_OUTPUT
-    
-    - name: Check for file changes
-      id: check-changes
-      run: |
-        # Check if any files have been modified or added
-        git add -N .
-        if git diff --quiet docs/flagrelease_en/model_readmes/ 2>/dev/null; then
-          echo "No file changes detected"
-          echo "has_changes=false" >> $GITHUB_OUTPUT
-        else
-          echo "File changes detected"
-          echo "has_changes=true" >> $GITHUB_OUTPUT
-        fi
-    
-    - name: Reset git configuration before creating PR
-      if: steps.check-changes.outputs.has_changes == 'true'
-      run: |
-        # clear
-        git config --local --unset-all http.https://github.com/.extraheader 2>/dev/null || true
-        git config --global --unset-all http.https://github.com/.extraheader 2>/dev/null || true
+      # 1. Checkout code and disable default credential storage
+      - name: Checkout repository code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false # Critical! Prevents subsequent authentication conflicts
 
-    - name: Create Pull Request
-      if: steps.check-changes.outputs.has_changes == 'true'
-      uses: peter-evans/create-pull-request@v6
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: "Auto-update ModelScope documentation [$(date +'%Y-%m-%d %H:%M')]"
-        title: "ModelScope Documentation Update - $(date +'%Y-%m-%d')"
-        body-path: ${{ steps.generate-report.outputs.report_file }}  # Use generated report as PR description
-        labels: |
-          documentation
-          auto-update
-          modelscope
-        branch: update/modelscope-docs-$(date +'%Y%m%d-%H%M%S')  # Unique branch name
-        delete-branch: true  # Auto-delete branch after PR merge
-        reviewers: ${{ github.event.pull_request.user.login }}
-        assignees: ${{ github.event.pull_request.user.login }}
-        draft: false
+      # 2. Configure Git user information
+      - name: Setup Git user
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      # 3. (Optional but recommended) Reconfigure the remote repository URL with authentication token as per the article
+      - name: Authenticate Git remote
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      # --- Your original business logic steps (Python setup, file download, etc.) ---
+      - name: Set up Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Download ModelScope documentation
+        id: download
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          python docs/scripts/download_readmes.py
+        continue-on-error: true
+      # --- End of business logic steps ---
+
+      # 4. Use peter-evans/create-pull-request to create the PR
+      # This Action will automatically detect workspace changes, commit, create a branch, and push
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Commit message
+          commit-message: 'Auto-update ModelScope documentation [$(date +''%Y-%m-%d %H:%M'')]'
+          # Branch settings
+          branch: 'update/modelscope-docs-$(date +''%Y%m%d-%H%M%S'')'
+          delete-branch: true
+          # PR settings
+          title: '📚 ModelScope Documentation Update - $(date +''%Y-%m-%d'')'
+          body-path: 'docs/flagrelease_en/model_readmes/download_report_*.txt' # Note: This needs to match your report filename pattern
+          # Base branch and labels
+          base: 'main'
+          labels: 'documentation, auto-update, modelscope'
+          draft: false
