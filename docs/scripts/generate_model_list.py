@@ -1,4 +1,3 @@
-```python
 #!/usr/bin/env python3
 """
 Automatically generate model list for the FlagRelease organization.
@@ -97,4 +96,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
