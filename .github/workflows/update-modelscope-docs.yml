@@ -35,6 +35,12 @@ jobs:
     - name: Install Python dependencies
       run: |
         pip install -r requirements.txt
+
+    - name: Generate model list
+      run: |
+        cd "$GITHUB_WORKSPACE"
+        python docs/scripts/generate_model_list.py
+      continue-on-error: true 
     
     - name: Download ModelScope documentation
       id: download
