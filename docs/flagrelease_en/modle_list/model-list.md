@@ -2,6 +2,8 @@
 
 ```{toctree}
 :maxdepth: 5
-:glob:
 
+model-list-aihuanxin.md
+model-list-huggingface.md
+model-list-modelscope.md
 ```
