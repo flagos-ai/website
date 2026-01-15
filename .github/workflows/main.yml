@@ -1,0 +1,146 @@
+name: Update All Model Lists
+
+on:
+  schedule:
+    # 每天UTC时间4点运行（北京时间12点）
+    - cron: '0 4 * * *'
+  
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual update all model lists'
+
+jobs:
+  update-aihuanxin:
+    runs-on: ubuntu-latest
+    name: Update aihuanxin model list
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: pip install requests
+    
+    - name: Run aihuanxin update
+      id: aihuanxin
+      run: |
+        cd docs/scripts
+        python update_models_aihuanxin.py
+        if [ $? -eq 0 ]; then
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create PR for aihuanxin
+      if: steps.aihuanxin.outputs.has_changes == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "chore: update model list from aihuanxin"
+        title: "📦 Update model list from aihuanxin"
+        body: |
+          ## Model List Update (aihuanxin)
+          *This PR was automatically generated*
+        branch: update/model-list-aihuanxin
+        base: main
+        delete-branch: true
+        add-paths: |
+          docs/flagrelease_en/modle-list/model-list-aihuanxin.md
+  
+  update-modelscope:
+    runs-on: ubuntu-latest
+    name: Update ModelScope model list
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: pip install requests
+    
+    - name: Run ModelScope update
+      id: modelscope
+      run: |
+        cd docs/scripts
+        python update_models_modelscope.py
+        if [ $? -eq 0 ]; then
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create PR for ModelScope
+      if: steps.modelscope.outputs.has_changes == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "chore: update model list from ModelScope"
+        title: "📦 Update model list from ModelScope"
+        body: |
+          ## Model List Update (ModelScope)
+          *This PR was automatically generated*
+        branch: update/model-list-modelscope
+        base: main
+        delete-branch: true
+        add-paths: |
+          docs/flagrelease_en/modle-list/model-list-modelscope.md
+  
+  update-huggingface:
+    runs-on: ubuntu-latest
+    name: Update HuggingFace model list
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: pip install requests
+    
+    - name: Run HuggingFace update
+      id: huggingface
+      run: |
+        cd docs/scripts
+        python update_models_huggingface.py
+        if [ $? -eq 0 ]; then
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create PR for HuggingFace
+      if: steps.huggingface.outputs.has_changes == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "chore: update model list from HuggingFace"
+        title: "📦 Update model list from HuggingFace"
+        body: |
+          ## Model List Update (HuggingFace)
+          *This PR was automatically generated*
+        branch: update/model-list-huggingface
+        base: main
+        delete-branch: true
+        add-paths: |
+          docs/flagrelease_en/modle-list/model-list-huggingface.md
