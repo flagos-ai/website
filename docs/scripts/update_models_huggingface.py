@@ -248,7 +248,7 @@ def main():
     
     # Configuration - output file path
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_filename = os.path.join(script_dir, '../flagrelease_en/modle-list/model-list-huggingface.md')
+    output_filename = os.path.join(script_dir, '../flagrelease_en/modle_list/model-list-huggingface.md')
     
     # Get existing model names
     print(f"\n1. Reading existing model list from: {output_filename}")
