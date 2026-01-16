@@ -192,7 +192,8 @@ all_projects = list(multiproject_projects.keys())
 for project in all_projects:
     if project != docset:
         exclude_patterns.append(project)
-
+if docset in ["flagrelease_en", "flagrelease_zh"]:
+    exclude_patterns.append("model_readmes")
 default_role = "obj"
 intersphinx_cache_limit = 14
 intersphinx_timeout = 3
