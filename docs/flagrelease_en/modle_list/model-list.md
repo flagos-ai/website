@@ -1,6 +1,6 @@
 # Model List
 
-This section includes the hardware-adapted model files released through Flagrelease.
+This section includes the hardware-adapted models released through FlagRelease.
 
 ```{toctree}
 :maxdepth: 5
