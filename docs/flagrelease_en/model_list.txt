@@ -58,7 +58,7 @@ FlagRelease/RoboBrain2.0-7B-FlagOS-Ascend
 FlagRelease/RoboBrain2.0-7B-W8A16-FlagOS
 FlagRelease/RoboBrain2.0-7B-metax-FlagOS
 FlagRelease/RoboBrain2.5-8B-FlagOS
-FlagRelease/RoboBrain2.5-8B-mthreads-FlagOS
+FlagRelease/RoboBrain2.5-8B-ascend-FlagOS
 FlagRelease/Seed-OSS-36B-Instruct-FlagOS
 FlagRelease/gpt-oss-120b-FlagOS
 FlagRelease/grok-2-FlagOS
