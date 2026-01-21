@@ -74,7 +74,8 @@ modelscope download --model Qwen/Qwen3-8B --local_dir /root/qwen3-8b
 ### Download FlagOS Image
 
 ```bash
-docker pull harbor.baai.ac.cn/flagrelease-public/flagrelease:flagrelease_nv_qwen3_8b
+#docker pull harbor.baai.ac.cn/flagrelease-public/flagrelease:flagrelease_nv_qwen3_8b
+docker pull harbor.baai.ac.cn/flagrelease-public/flagrelease-nvidia-release-model_qwen3-8b-tree_none-gems_3.0-scale_0.8.0-cx_none-python_3.12.10-torch_2.7.1-pcp_cuda12.4-gpu_nvidia004-arc_amd64-driver_535.161.08:2510211417
 ```
 
 ### Start the inference service
