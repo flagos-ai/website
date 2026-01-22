@@ -17,10 +17,3 @@ FlagTree includes the following main features:
     - Core concept: Break the abstract boundaries of DSL and support inline native code from vendors. It enables the direct generation of target instructions through the vendor's private compilation pipeline, bypassing the intermediate conversion overhead of general-purpose compilers and granting expert-level users absolute control over instruction scheduling, register allocation, and underlying synchronization primitives.
 - **Hints**:
   The topmost-level compiler hint language, tailored for beginners, providing lightweight performance optimizations without altering program semantics or underlying hardware behavior. Hints is fully backward-compatible with native Triton code.
-
-```{toctree}
-
-features_tle.md
-features_hints.md
-
-```
