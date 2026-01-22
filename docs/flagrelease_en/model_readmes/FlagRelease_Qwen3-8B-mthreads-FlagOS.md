@@ -74,7 +74,8 @@ modelscope download --model Qwen/Qwen3-8B --local_dir /data/models/Qwen3-8B
 ### Download FlagOS Image
 
 ```bash
-docker pull harbor.baai.ac.cn/flagrelease-public/mthreads_qwen3_8b:latest
+#docker pull harbor.baai.ac.cn/flagrelease-public/mthreads_qwen3_8b:latest
+docker pull harbor.baai.ac.cn/flagrelease-public/flagrelease-mthreads-release-model_qwen3-8b-tree_none-gems_3.0-scale_0.8.0-cx_none-python_3.10.12-torch_musa-2.1.0-pcp_musa4.1.0-gpu_mthreads001-arc_amd64-driver_2.3.0:2511181542
 ```
 
 ### Start the inference service
