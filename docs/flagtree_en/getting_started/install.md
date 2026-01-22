@@ -40,11 +40,12 @@
 
 ### Install FlagTree for different backends
 
-This section includes how to install dependencies and FlagTree for different backends. 
+This section includes how to install dependencies and FlagTree for different backends.
 
 ```{tip}
 Automatic dependency library downloads may be limited by network conditions. You can manually download to the cache directory ~/.flagtree (modifiable via the FLAGTREE_CACHE_DIR environment variable). No need to manually set LLVM environment variables such as LLVM_BUILD_DIR.
 ```
+
 Complete build commands for each backend:
 
 * [iluvatar](https://github.com/FlagTree/flagtree/tree/main/third_party/iluvatar/)
@@ -268,16 +269,17 @@ python3 -m pip uninstall -y triton
 RES="--index-url=https://resource.flagos.net/repository/flagos-pypi-hosted/simple --trusted-host=https://resource.flagos.net"
 ```
 
-|Backend |Install cmd|Triton version|Python version|
-|--------|-----------|--------------|--------------|
-|nvidia  |python3 -m pip install flagtree==0.3.0rc1 $RES            |3.1|3.10, 3.11, 3.12|
-|nvidia  |python3 -m pip install flagtree==0.3.0rc1+3.2 $RES        |3.2|3.10, 3.11, 3.12|
-|nvidia  |python3 -m pip install flagtree==0.3.0rc1+3.3 $RES        |3.3|3.10, 3.11, 3.12|
-|iluvatar|python3 -m pip install flagtree==0.3.0rc2+iluvatar3.1 $RES|3.1|3.10|
-|mthreads|python3 -m pip install flagtree==0.3.0rc3+mthreads3.1 $RES|3.1|3.10|
-|ascend  |python3 -m pip install flagtree==0.3.0rc1+ascend3.2 $RES  |3.2|3.11|
-|hcu     |python3 -m pip install flagtree==0.3.0rc2+hcu3.0 $RES     |3.0|3.10|
-|enflame |python3 -m pip install flagtree==0.3.0rc1+enflame3.3 $RES |3.3|3.10|
+| Backend | Install command (The version corresponds to the git tag) | Triton version | Python version |
+| :--- | :--- | :--- | :--- |
+| nvidia | python3 -m pip install flagtree==0.4.0 $RES | 3.1 | 3.10, 3.11, 3.12 |
+| nvidia | python3 -m pip install flagtree==0.4.0+3.2 $RES | 3.2 | 3.10, 3.11, 3.12 |
+| nvidia | python3 -m pip install flagtree==0.4.0+3.3 $RES | 3.3 | 3.10, 3.11, 3.12 |
+| nvidia | python3 -m pip install flagtree==0.4.0+3.5 $RES | 3.5 | 3.12 |
+| iluvatar | python3 -m pip install flagtree==0.4.0+iluvatar3.1 $RES | 3.1 | 3.10 |
+| mthreads | python3 -m pip install flagtree==0.4.0+mthreads3.1 $RES | 3.1 | 3.10 |
+| ascend | python3 -m pip install flagtree==0.4.0+ascend3.2 $RES | 3.2 | 3.11 |
+| hcu | python3 -m pip install flagtree==0.4.0+hcu3.0 $RES | 3.0 | 3.10 |
+| enflame | python3 -m pip install flagtree==0.4.0+enflame3.3 $RES | 3.3 | 3.10 |
 
 The flagtree version all have corresponding git tags.
 

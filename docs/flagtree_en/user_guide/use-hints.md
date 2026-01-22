@@ -33,13 +33,13 @@ def kernel(x_ptr, y_ptr, N):
 
 The following tables list the optimization hints applicable to Triton operations for compilation on different backends.
 
-NVIDIA
+### NVIDIA
 
 | Hint Name | Triton Operation | Description | Branch |
 | :--- | :--- | :--- | :--- |
 | shared_memory | tl.load | Converts a global memory load operation to an asynchronous copy to shared memory, then loads from shared memory. The load must be at least 4 bytes and convertible to an async load. | triton_v3.5.x |
 
-Huawei Ascend
+### Huawei Ascend
 
 | Hint Name | Triton Operation | Description | Branch |
 | :--- | :--- | :--- | :--- |
@@ -47,7 +47,7 @@ Huawei Ascend
 | bind_sub_block | for loop | Optimizes parallel execution by binding loop iterations to sub-blocks. Equivalent to `tl.parallel(..., bind_sub_block=True)` in triton-ascend. | triton_v3.2.x_ascend_hints |
 | multibuffer | tl.load | Enables multi-buffering optimization to overlap data transfer and computation (fixed to 2 buffer copies). Equivalent to `tl.multibuffer(tensor, 2)` or `tl.compile_hint(tensor, "multi_buffer", 2)` in triton-ascend. | triton_v3.2.x_ascend_hints |
 
-AIPU
+### AIPU
 
 | Hint Name | Triton Operation | Description | Branch |
 | :--- | :--- | :--- | :--- |

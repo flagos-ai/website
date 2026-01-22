@@ -18,17 +18,17 @@ Getting Started
 Have a quick view of FlagRelease, and also some basic concepts.
 
 +++
-[Learn more »](FlagRelease_overview/FlagRelease-overview.md)
+[Learn more »](model-list.md)
 :::
 
-:::{grid-item-card} {octicon}`book;1.5em;sd-mr-1` Getting Started
-:link: getting_started/getting-started
+:::{grid-item-card} {octicon}`book;1.5em;sd-mr-1` Model List
+:link: model-list
 :link-type: doc
 
-Outlines the installation requirements for FlagRelease and provides step-by-step instructions from installation to trying out experimental operators.
+Lists the FlagOS hardware-specific versions of open-source large models.
 
 +++
-[Learn more »](getting_started/getting-started.md)
+[Learn more »](model-list.md)
 :::
 
 ::::
@@ -36,19 +36,18 @@ Outlines the installation requirements for FlagRelease and provides step-by-step
 ---
 
 ```{toctree}
-:caption: 📑 Release Notes
-:maxdepth: 5
-:hidden:
-
-release_notes/release-notes.md
-```
-
-```{toctree}
 :caption: 📚 Guides
 :maxdepth: 5
 :hidden:
 
-FlagGems_overview/FlagGems-overview.md
+FlagRelease_overview/FlagRelease-overview.md
 getting_started/getting-started.md
 ```
 
+```{toctree}
+:caption: 📑 Model List
+:maxdepth: 5
+:hidden:
+
+modle_list/model-list.md
+```

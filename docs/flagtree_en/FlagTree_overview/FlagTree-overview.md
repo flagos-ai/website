@@ -4,7 +4,7 @@ FlagTree is an open-source, unified compiler for multiple AI chips. FlagTree is 
 
 ```{toctree}
 
-features.md
+features/features.md
 workflow.md
 
 ```

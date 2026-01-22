@@ -19,13 +19,25 @@ The following list includes the supported hardware platforms:
 - klx
 - Tsingmicro
 
-## Tools
+## System software requirements
 
-The following list includes the supported tools:
+You may need the following system softwares:
 
 - Ubuntu
 - Python 3.x
-- Triton 3.x
+
+## Backends, Triton versions, and branches
+
+Each backend is based on different versions of Triton, and therefore resides in different protected branches. All these protected branches have equal status.
+
+
+|Branch|Vendor|Backend|Triton version|
+|:-----|:-----|:------|:-------------|
+|[main](https://github.com/flagos-ai/flagtree/tree/main)|NVIDIA, AMD, x86_64 cpu, ILUVATAR, Moore Threads, KLX, MetaX, HYGON|[nvidia](/third_party/nvidia/), [amd](/third_party/amd/), [triton-shared](https://github.com/microsoft/triton-shared), [iluvatar](/third_party/iluvatar/), [mthreads](/third_party/mthreads/), [xpu](/third_party/xpu/), [metax](/third_party/metax/), [hcu](third_party/hcu/)|3.1, 3.1, 3.1, 3.1, 3.1, 3.0, 3.1, 3.0|
+|[triton_v3.2.x](https://github.com/flagos-ai/flagtree/tree/triton_v3.2.x)|NVIDIA, AMD, Huawei Ascend, Cambricon|[nvidia](https://github.com/FlagTree/flagtree/tree/triton_v3.2.x/third_party/nvidia/), [amd](https://github.com/FlagTree/flagtree/tree/triton_v3.2.x/third_party/amd/), [ascend](https://github.com/FlagTree/flagtree/blob/triton_v3.2.x/third_party/ascend), [cambricon](https://github.com/FlagTree/flagtree/tree/triton_v3.2.x/third_party/cambricon/)|3.2|
+|[triton_v3.3.x](https://github.com/flagos-ai/flagtree/tree/triton_v3.3.x)|NVIDIA, AMD, x86_64 cpu, ARM China, Tsingmicro, Enflame|[nvidia](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/nvidia/), [amd](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/amd/), [triton-shared](https://github.com/microsoft/triton-shared), [aipu](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/aipu/), [tsingmicro](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/tsingmicro/), [enflame](https://github.com/FlagTree/flagtree/tree/triton_v3.3.x/third_party/enflame/)|3.3|
+|[triton_v3.4.x](https://github.com/flagos-ai/flagtree/tree/triton_v3.4.x)|NVIDIA, AMD|[nvidia](https://github.com/FlagTree/flagtree/tree/triton_v3.4.x/third_party/nvidia/), [amd](https://github.com/FlagTree/flagtree/tree/triton_v3.4.x/third_party/amd/)|3.4|
+|[triton_v3.5.x](https://github.com/flagos-ai/flagtree/tree/triton_v3.5.x)|NVIDIA, AMD|[nvidia](https://github.com/FlagTree/flagtree/tree/triton_v3.5.x/third_party/nvidia/), [amd](https://github.com/FlagTree/flagtree/tree/triton_v3.5.x/third_party/amd/)|3.5|
 
 ## Dependencies
 
