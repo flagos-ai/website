@@ -6,7 +6,7 @@ FlagTree retains Triton's core architecture but introduces an extensible framewo
 ```{toctree}
 common-architecture.md
 flagtree-extensible-framework.md
-features-tle.md
 features-hints.md
+features-tle.md
 
 ```
