@@ -4,7 +4,7 @@ This section introduces Hints and how Hints are handled in the compilation proce
 
 ## Hints introduction
 
-Hints provides a non-invasive performance hints injection mechanism that enables hardware-aware optimizations while maintaining full compatibility with native Triton code. The mechanism is simple: programmers add inline comments (`#@hint: <hint_name>`) to the corresponding Triton operations (e.g., `tl.load`) to provide hardware-aware optimization hints. These hints are encoded as MLIR (Multi-Level Intermediate Representation) attributes during compilation, enabling the mid-end and backend to apply hardware-aware optimizations and multi-platform dynamic adaptation based on an elastic verification strategy.
+Hints provides a non-invasive performance hints injection mechanism that enables hardware-aware optimizations while maintaining full compatibility with native Triton code. The mechanism is simple: programmers add inline comments (`#@hint: <hint_name>`) to the corresponding Triton operations (for example, `tl.load`) to provide hardware-aware optimization hints. These hints are encoded as MLIR (Multi-Level Intermediate Representation) attributes during compilation, enabling the mid-end and backend to apply hardware-aware optimizations and multi-platform dynamic adaptation based on an elastic verification strategy.
 
 This mechanism provides the following characteristics:
 
