@@ -1,6 +1,6 @@
 # FlagTree extensible framework
 
-FlagTree extensible framework is specifically designed to support multi-backend compilation and three-level compiler languages, as mentioned in the Features section. 
+FlagTree extensible framework is specifically designed to support multi-backend compilation and three-level compiler languages, as mentioned in the [Features](features.md) section. 
 
 - **Backend extensions**: FlagTree follows a plugin-based architecture, where each backend is self-contained in `third_party/[backend_name]/`. Each backend implements the BaseBackend interface, defines its compilation pipeline through `add_stages()`, and provides backend-specific optimizations and code generation. This design allows adding new backends without modifying the core Triton code.
 
