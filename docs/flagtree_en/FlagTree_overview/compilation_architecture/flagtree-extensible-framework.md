@@ -1,15 +1,13 @@
 # FlagTree extensible framework
 
-FlagTree extensible framework is specifically designed to support multi-backend compilation and three-level compiler languages, as mentioned in the Features section. 
+FlagTree extensible framework is specifically designed to support multi-backend compilation and three-level compiler languages, as mentioned in the [Features](features.md) section. 
 
 - **Backend extensions**: FlagTree follows a plugin-based architecture, where each backend is self-contained in `third_party/[backend_name]/`. Each backend implements the BaseBackend interface, defines its compilation pipeline through `add_stages()`, and provides backend-specific optimizations and code generation. This design allows adding new backends without modifying the core Triton code.
 
 - **Language and compiler optimization extensions**: For existing Triton code, FlagTree adopts incremental extensions for full compatibility with native Triton. These extensions include the following modification to the common architecture:
-  
-  - Adding `flagtree_hints` parameter to `load()` in `core.py` and `semantic.py`
-  - Parsing `#@hint:` comments in `jit.py` and extracting hints in `code_generator.py`
-  - Dispatching to TLE modules via module_map mechanism in `code_generator.py`
-  - Integrating TLE and Hints passes in backend compilation pipelines
+  - Modifications to Existing Triton Files: FlagTree incrementally extends Triton's compilation pipeline by modifying existing files. For example, `python/triton/runtime/jit.py` is extended to parse `#@hint:` comments and route TLE syntax, attaching hints to AST nodes. TTIR dialect definition files (`.td`) are extended with new attribute definitions to encode hints as MLIR attributes on operations like `tt.load`. Backend compiler files (for example, `backend/compiler.py`) are extended to register new optimization passes that process hints and TLE operations, integrating with the existing pass management infrastructure.
+
+  - New Files Added: FlagTree introduces a complete TLE module as new files in `third_party/tle/`, including dialect definitions (operations like `tle.dsl_region`), transformation pass implementations (memory space assignment, async load lowering, and so on.), LLVM conversion passes, and Python language bindings. This modular design keeps TLE independent from core Triton while integrating through the extended TTIR attributes and backend pass registration mechanism, enabling features like shared memory management and pipeline optimizations without modifying the common architecture.
 
 For TLE specifically, FlagTree maximizes separation between TLE language extensions (`python/triton/experimental/tle/`) and TLE MLIR dialect (`third_party/tle/`). TLE language constructs are defined in Python and integrated through the AST processing pipeline, while TLE dialect operations are implemented in C++/MLIR and integrated through the compilation pipeline. This separation allows language features and IR transformations to evolve independently, improving maintainability and enabling different backends to adopt TLE features at different stages of the compilation pipeline.
 
