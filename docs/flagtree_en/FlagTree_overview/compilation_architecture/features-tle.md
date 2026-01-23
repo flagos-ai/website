@@ -30,12 +30,12 @@ For how to use TLE, see [Use TLE-Lite](/user_guide/use-tle-lite.md), [Use TLE-St
   - Extends Triton with explicit shared and tensor memory management, asynchronous data movement via Tensor Memory Accelerator (TMA), and pipeline control optimized for NVIDIA Hopper-class GPUs for now.
   - Frontend APIs live under `tle` and lower into custom MLIR dialect and processed by passes under `tle`.
 - Frontend DSL layer (Python)
-  - `tle.language.core` overrides key `tl` builtins to attach extra attributes (e.g., "tt.load.async") and the `buffered_tensor` handles representing shared or tensor memory allocations (core.py) are returned. For example, the key `tl` builtins are `load`, `alloc`, `copy`, `local_load`, `local_store`, and loop helpers.
-  - GPU-specific helpers in GPU define layouts (`swizzled_shared_layout`, `nv_mma_shared_layout`, etc.), scopes (`smem`, `tmem`), and `buffered_tensor` semantics. These semantics wrap IR memdesc types while keeping Triton-style type checking.`
-  - Users import these symbols (e.g., `tle.alloc`, `tle.copy`, `tle.pipeline`) inside `@triton.jit` kernels to allocate SMEM tiles, launch async copies, or orchestrate staged loops.
+  - `tle.language.core` overrides key `tl` builtins to attach extra attributes (for example, "tt.load.async") and the `buffered_tensor` handles representing shared or tensor memory allocations (core.py) are returned. For example, the key `tl` builtins are `load`, `alloc`, `copy`, `local_load`, `local_store`, and loop helpers.
+  - GPU-specific helpers in GPU define layouts (`swizzled_shared_layout`, `nv_mma_shared_layout`, and so on.), scopes (`smem`, `tmem`), and `buffered_tensor` semantics. These semantics wrap IR memdesc types while keeping Triton-style type checking.`
+  - Users import these symbols (for example, `tle.alloc`, `tle.copy`, `tle.pipeline`) inside `@triton.jit` kernels to allocate SMEM tiles, launch async copies, or orchestrate staged loops.
 - Semantic validation
   - `TLESemantic` in `semantic.py` runs alongside Triton’s semantic layer. It validates shapes, dtypes, and copy compatibility before lowering, providing early error messages and adapting constexpr inputs.
-  - Semantic helpers call into custom builder hooks (exposed through the C++ bridge) to emit `LocalAllocOp`, `TMACopyOp`, etc., ensuring Python APIs map 1:1 to TTIR constructs.
+  - Semantic helpers call into custom builder hooks (exposed through the C++ bridge) to emit `LocalAllocOp`, `TMACopyOp`, and so on., ensuring Python APIs map 1:1 to TTIR constructs.
 - TLE-Raw and EDSL Layer
   - TLE-Raw (raw) exposes a lightweight MLIR-based EDSL (Embedded Domain-Specific Language) for writing dialect-specific intrinsics directly. Decorators like `@dialect(name="mlir")` build LLVM IR from Python ASTs via `EdslMLIRJITFunction`, enabling backend developers to prototype kernels or helper ops outside the high-level Triton syntax.
   - The TLE-Raw runtime (`call()` helper) materializes `tle::DSLRegionOp` nodes whose bodies are later inlined by passes.

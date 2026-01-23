@@ -50,7 +50,7 @@ Each backend is based on different versions of Triton, and therefore resides in 
     | `zlib1g`       | The compression library runtime files. This is a widely used software library for data compression, commonly used by other packages (such as `libxml2`) to handle compressed data streams. |
     | `zlib1g-dev`   | The compression library development files. Contains the header files and static libraries required to compile and link programs that use the zlib compression library. |
     | `libxml2`      | The GNOME XML library runtime. Provides software libraries for parsing, manipulating, and generating XML data, and is used by many applications and dependencies. |
-    | `libxml2-dev`  | The GNOME XML library development files. Includes header files and symbolic links necessary for developing software that uses `libxml2` (e.g., compiling XML-parsing programs). |
+    | `libxml2-dev`  | The GNOME XML library development files. Includes header files and symbolic links necessary for developing software that uses `libxml2` (for example, compiling XML-parsing programs). |
 
 - **Python dependencies**  
   The following table lists the Python dependencies. These dependencies are included in the `requirements.txt` file and will be automatically installed when using the `pip install` command.

@@ -29,7 +29,7 @@ flagtree/
 │   │   └── experimental/          # Language extensions
 │   │       └── tle/               # TLE (Triton Language Extensions)
 │   │           ├── language/      # TLE language definition (extends AST Processing)
-│   │           │   ├── core.py    # TLE-Lite: Core TLE language features (e.g., tle.load)
+│   │           │   ├── core.py    # TLE-Lite: Core TLE language features (for example, tle.load)
 │   │           │   ├── [gpu/npu]/ # TLE-Struct: GPU-specific and NPU-specific constructs
 │   │           │   │   ├── core.py    
 │   │           │   │   ├── semantic.py 
